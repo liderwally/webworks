@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        width:100vw;
+        height:100vh;
+        background-color: rgba(0, 0, 0, 0);
+    }
+    .holder{        
+        width: 80%;
+        height: 80%;
+        position: absolute;
+        background-color:rgba(0, 0, 0, 0);
+    }
+    .cap{
+        top:0px;
+        left: 75%;
+        width: 25%;
+        height: 100%;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.2);
+        text-align: center;
+        transition:0.5s;
+        line-height: 100vh;
+        border-radius: 15%;
+        font-stretch: extra-condensed;
+    }
+    #cap1{
+        z-index: 20;
+        width: 100%;
+        border-radius: 5%;
+        transition-delay: 0s;
+    }
+    #cap1 :hover{
+        box-shadow:3px 5px 8px 1px black;
+    }
+    #cap2{
+        z-index: 15;
+        visibility: hidden;
+        transition-delay: 0.2s;
+
+    }    
+    #cap3{
+        z-index: 10;
+        visibility: hidden;
+        transition-delay: 0.5s;
+    }
+    #cap4{
+        z-index: 0;
+        visibility: hidden;
+        transition-delay: 1s;
+    }
+
+</style>
+<body>
+    <div class="holder">
+        <div class="cap" id="cap1" on >LiderSpace</div>
+        <div class="cap" id="cap2">Home</div>
+        <div class="cap" id="cap3">Sign-in</div>
+        <div class="cap" id="cap4">Help</div>       
+    </div>
+</body>
+<script>
+    var jam = true;
+    var capone = document.querySelector('#cap1'); 
+    var captwo = document.querySelector('#cap2');
+    var capthree = document.querySelector('#cap3');
+    var capfour = document.querySelector('#cap4');
+    capone.addEventListener("mouseover",appear);
+    capone.addEventListener("click",toggler);
+    capone.addEventListener("mouseout",disappear);
+    captwo.addEventListener("click",() =>{window.location.href="Home.php";});
+    capthree.addEventListener("click",() =>{window.location.href="Login.php";});
+    capfour.addEventListener("click",() =>{window.location.href="Help.php";});
+    
+    function appear(){
+        capthree.style = "visibility:visible;top:0%;left:25%;";
+        capfour.style = "visibility:visible;top:0%;left:50%;";
+        captwo.style = "visibility:visible;top:0px;left:0%;";
+        capone.style = " left: 75%;width:25%;transform(rotateZ(360deg));" ;
+        capone.innerHTML = "LIOTS";
+      }
+    function disappear(){
+       if(jam){
+        
+         capthree.style = "visibility:hidden;top:0px;left:75%;";
+        capfour.style = "visibility:hidden;top:0px;left:75%;";
+        captwo.style = "visibility:hidden;top:0px;left:75%;";
+        capone.style = " left: 0%;width:100%;transform(rotateZ(-360deg));" ;
+        capone.innerHTML = "Lider IOT Space";
+      }
+    }
+    function toggler(){
+        jam=!jam;
+        if(!jam){
+            alert("locked");
+        }
+    }
+
+
+</script>
+</html>

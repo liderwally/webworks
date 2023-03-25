@@ -1,0 +1,5 @@
+        <div class="container" >
+          <div class="outcover" id="S1113">
+          <input type="range" name="binSwitch1" min="0" max="1" step="1" onchange="lastSelectedDevice ='' + this.parentElement.id;formId.value = lastSelectedDevice.slice(1,5); upload1(this.value);">
+          </div>
+        </div>

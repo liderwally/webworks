@@ -1,0 +1,1 @@
+<div class="container" ><div class="outcover"><div class="incover" id="$id" onclick=" if(togcount==0){toggler.style='left:60%;background-color:blue;';outCover.style='background-color:white;';togcount=1;}else{toggler.style='left:0%';outCover.style='background-color:grey;';togcount=0;} "></div></div></div>  
