@@ -1,11 +1,11 @@
 <?php
 
-$nam=strVal($_POST["name"]);
-$email=strVal($_POST["email"]);
+$nam=strVal($_POST["Name"]);
+$email=strVal($_POST["userEmail"]);
 $num=strVal($_POST["userName"]);
 $passCode=strVal($_POST["passCode"]);
 $confirm=strVal($_POST["confirmCode"]);
-$dbConnect=false;
+$dbConnected=false;
 $database='myNewDb';
 $noter = false;
             
@@ -14,10 +14,9 @@ if(!$dbConnect){
     die("couldn't connect".mysqli_error());
 }
 else{
-   $dbConnect=true;
-   $sql='INSERT INTO newTable(Nam,Email,password,ID) VALUES("'.$nam .'","'.$email.'","'.$passCode.'","'.$num.'")';
+   $sql='INSERT INTO newTable(Nam,Email,password,ID) VALUES("'.$nam.'","'.$email.'","'.$passCode.'","'.$num.'")';
    echo "<br>";
-   echo $sql;
+   //echo $sql;
 }
   
 
@@ -47,23 +46,24 @@ else{
     <div class="hidbar"></div>
     <div class="none">
  <?php         
-if(mysqli_query($conn,$sql)===TRUE){
+if(mysqli_query($dbConnect,$sql)===TRUE){
     $noter = true;
 }
 else{
-    die("<br>couldnt connect".mysqli_error($conn));
+    die("<br>couldnt connect".mysqli_error($dbConnect));
 }
   
-  mysqli_close($conn);
+  mysqli_close($dbConnect);
 ?>
     </div>
     
 </body>
 <script src="hidbar.js"></script>
 <script>
-var noter  = <?php echo $noter;  ?>
+var noter  = "";
+noter = <?php echo $noter;  ?>;
+alert(noter);
 if(noter){
-
 alert("")
 alert("Dear"+<?echo $nam;?> +",\n Your details have been recorded successfully.");
 window.location.href="login.php";

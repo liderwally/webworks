@@ -8,7 +8,7 @@
  }
  $fileAppender = $userName.$userId ;
  $filepath =$fileAppender.".txt";
- $fileConnect= fopen($filepath,"r+");
+ //$fileConnect= fopen($filepath,"x");
  $myfile = fopen($filepath, "r+") or die("Unable to open file!");
  
 ?>
