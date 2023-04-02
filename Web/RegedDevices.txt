@@ -1,0 +1,3 @@
+option<>>justvalue<>>Just Values
+option<>>variswitch<>>variable Switch
+option<>>binSwitch<>>Binary Switch
