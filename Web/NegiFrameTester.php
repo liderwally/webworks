@@ -1,9 +1,11 @@
 <?php
 $database='myNewDb';
- $conn = mysqli_connect('localhost:3306','root','mimisijui04390',$database);
- if(!$conn){
-    die("couldnt connect".mysqli_error());
- }
+$conn = mysqli_connect('localhost:3306','root','mimisijui04390',$database);
+if(!$conn){
+    $conn =  mysqli_connect("localhost","newdb11","sL3s03!x4{Z6K7t","mynewdb");
+        if(!$conn){
+    die("couldn't connect".mysqli_error());}
+}
  else{
   // echo 'SELECT * FROM walDevices WHERE ID='.$_POST["Port"].' AND UsId='.$_POST["UsId"].'';
  //$colora=mysqli_query($conn,'SELECT * FROM newTable WHERE ID=1112');

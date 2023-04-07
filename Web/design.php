@@ -142,7 +142,7 @@ while($eofile)
     $thestrarr = explode("/",$thestr);
     if($thestrarr[1] == "ena"){
       $theabout= "'".trim($thestrarr[7])."'";
-      $comm ="addObject($thestrarr[6],'".$thestrarr[5]."',$thestrarr[4],$theabout);";
+      $comm ="addObject($thestrarr[6],'".$thestrarr[5]."',typeToObject('".$thestrarr[5]."','".$thestrarr[4]."'),$theabout);";
       echo  "setTimeout(() => {";  
       echo $comm;
       echo "},1000);";
@@ -220,6 +220,9 @@ function uploadData(val0,val1,val2,val3){
 }
 
 function downloadData(userId,devId){
+
+
+  return {"","","",""};
   
 }
 

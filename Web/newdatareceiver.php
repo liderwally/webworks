@@ -46,9 +46,12 @@ for($ind=0;$ind<$sind;$ind++){
                 $sqlb='update newTable set Num="'.$_GET['rangeBlue'].'" where ID=1115 ';
 
                 $database='myNewDb';
-            
-                        $conn = mysqli_connect('localhost:3306','root','mimisijui04390',$database);
-                        if(!$conn){die("couldnt connect".mysqli_error());}
+                $conn = mysqli_connect('localhost:3306','root','mimisijui04390',$database);
+                if(!$conn){
+                    $conn =  mysqli_connect("localhost","newdb11","sL3s03!x4{Z6K7t","mynewdb");
+                        if(!$conn){
+                    die("couldn't connect".mysqli_error());}
+                }
                         else{echo '<br>connected to myNewDb already';echo "<br>";}
                         
                         if(mysqli_query($conn,$sqla) and mysqli_query($conn,$sqlr) and mysqli_query($conn,$sqlg) and mysqli_query($conn,$sqlb))

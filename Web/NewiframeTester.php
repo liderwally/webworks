@@ -13,9 +13,12 @@
                $sqla='update '.$dbtable.' set val0="'.$_POST['Val0'].'", val1="'.$_POST['Val1'].'",val2="'.$_POST['Val2'].'",val3="'.$_POST['Val3'].'" where ID='.$_POST['Port'].' and UsId=1113;';
                //$sqla='update '.$dbtable.' set val0="'.$_POST['Val0'].'" where ID=1113 and UsId=1113; ';
                $database='myNewDb';
-                
-                        $conn = mysqli_connect('localhost:3306','root','mimisijui04390',$database);
-                        if(!$conn){die("couldnt connect".mysqli_error());}
+               $conn = mysqli_connect('localhost:3306','root','mimisijui04390',$database);
+               if(!$conn){
+                   $conn =  mysqli_connect("localhost","newdb11","sL3s03!x4{Z6K7t","mynewdb");
+                       if(!$conn){
+                   die("couldn't connect".mysqli_error());}
+               }
                         else{echo '<br>connected to database already';echo "<br>";}
                         if(mysqli_query($conn,$sqla)){
                             echo "<br>Your details have been recorded successfully.";

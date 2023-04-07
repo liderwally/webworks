@@ -18,10 +18,12 @@ else{
 //
 $sqla='select password from newtable where ID="'.$userName.'"';
 $database='myNewDb';
-            
+       
 $conn = mysqli_connect('localhost:3306','root','mimisijui04390',$database);
 if(!$conn){
-    die("couldn't connect".mysqli_error());
+    $conn =  mysqli_connect("localhost","newdb11","sL3s03!x4{Z6K7t","mynewdb");
+        if(!$conn){
+    die("couldn't connect".mysqli_error());}
 }
 else{
     

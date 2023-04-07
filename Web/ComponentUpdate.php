@@ -20,7 +20,9 @@
                 $database='myNewDb';
                 
             
-                        $conn = mysqli_connect('localhost:3306','root','mimisijui04390',$database);
+                        
+                        $Conn = mysqli_connect("localhost","newdb11","sL3s03!x4{Z6K7t","mynewdb");
+                        $conn= mysqli_connect('localhost:3306','root','mimisijui04390',$database);
                         if(!$conn){die("couldnt connect".mysqli_error());}
                         else{echo '<br>connected to database already';echo "<br>";}
                         if(mysqli_query($conn,$sqla)){
