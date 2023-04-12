@@ -2,37 +2,24 @@ function addObject(port, name, deviceObject, about = "") {
 
   var theContainer = document.createElement("DIV");
   var dltButton = document.createElement("DIV");
-  //var disButton = document.createElement("DIV");
   var theInContainer = document.createElement("DIV");
   theContainer.setAttribute("class", name);
   theInContainer.setAttribute("id", port);
   theInContainer.draggable = "true";
   dltButton.setAttribute("id", "deleteBtn");
-  //disButton.setAttribute("id","disableBtn");
   dltButton.innerHTML = optionsvg;
-  //disButton.innerHTML = "X";
   theInContainer.style = "padding:5px;width:fit-content;height:fit-content;display:flex;color:blue;border:2px solid black;margin:5px;";
   dltButton.style = "float:right;top:0;left:calc(100%);width:50px;background-color:rgba(1,1,1,1);cursor:pointer;height:50px;text-align:center;line-height:50px;color:white;position:absolute;top:0;margin:1px; right:0px;";
-  //disButton.style = "float:right;width:50px;background-color:rgba(1,1,1,1);cursor:pointer;height:50px;text-align:center;line-height:50px;color:white;position:absolute;top:0;margin:1px; right:0px;";
   theContainer.style = "transition:2s;width:fit-content;height:fit-content;border:2px solid black;font-size:20px;position: relative;display:flex; ";
   dltButton.addEventListener("click", () => { options(dltButton); });
-  //dltButton.addEventListener("mouseleave",() =>{options(dltButton);});
   theContainer.appendChild(theInContainer);
   theContainer.appendChild(dltButton);
-  // theContainer.appendChild(disButton);
   middleibar.appendChild(theContainer);
   var theLabel = document.createElement("LABEL");
   theLabel.htmlfor = '' + about;
   theLabel.innerText = '' + about + ':';
   theInContainer.appendChild(theLabel);
   theInContainer.appendChild(deviceObject);
-
-
-  // var theDLabel = document.createElement("LABEL");
-  // theDLabel.htmlfor = '' ;
-  // theDLabel.innerText = '' + about + ':';
-  // theDlabel.style = "color:blue;";
-  // theInContainer.appendChild(theDLabel);
 
 }
 
@@ -48,14 +35,12 @@ function createDevice() {
 }
 
 var isoptiontabopen = false;
+
 function options(obj) {
   let optiontab = document.createElement("DIV");
   optiontab.setAttribute("class", "optionbars");
   optiontab.style = "width:300px;height:300px;top:calc(50vh-50px);left:calc(50vw - 150px);margin:1px;visibility:visible;";
   optiontab.style.transition = "2s";
-  let thisObject = obj;
-  let thisparent = obj.parentElement;
-  let thischild = obj.childElements;
   switch (obj.parentElement.lastElementChild.className == "optionbars") {
     case false:
       isoptiontabopen = !(false && isoptiontabopen);
@@ -91,47 +76,3 @@ function addOptions(ob) {
   ob.appendChild(frthOpt);
 }
 
-function createBinSwitch(name) {
-  let theInput = document.createElement("INPUT");
-  theInput.setAttribute("type", "range");
-  theInput.style.cursor = "pointer";
-  theInput.name = name;
-  theInput.min = "0";
-  theInput.max = "1";
-  theInput.step = "1";
-  theInput.addEventListener("change", () => {lastSelectedDevice = '' + (theInput.parentElement).id; formId.value = lastSelectedDevice; upload1(theInput.value); });
-  return theInput; 
- 
-}
-
-function createVarSwitch(name) {
-  let theInput = document.createElement("INPUT");
-  theInput.setAttribute("type", "range");
-  theInput.name = name;
-  theInput.min = "1";
-  theInput.max = "256";
-  theInput.step = "1";
-  theInput.addEventListener("change", () => { lastSelectedDevice = '' + (theInput.parentElement).id; formId.value = lastSelectedDevice; upload1(theInput.value); });
-  return theInput;
-}
-
-function createJustValue(name) {
-  let theInput = document.createElement("INPUT");
-  theInput.setAttribute("type", "text");
-  theInput.name = name;
-  theInput.addEventListener("change", () => { lastSelectedDevice = '' + (theInput.parentElement).id; formId.value = lastSelectedDevice; upload1(theInput.value); });
-  return theInput;
-}
-
-function createMaptracker(name) {
-  let newElement = document.createElement("IFRAME");
-  let mapSpacestyle = " min-width:100px;max-width:80%;min-height:150px;max-height:10%;background:white;border:3px solid black; ";
-  newElement.style= mapSpacestyle;
-  newElement.setAttribute("src", "www.googlemap.com");
-  newElement.setAttribute("name", name);
-  let thisdevId = newElement.parentElement.id;
-  let dataList = {"","","",""};
-  newElement.addEventListener("hover", () => { setInterval(100, () => { dataList = downloadData( userId, thisdevId) }); });
-
-
-}

@@ -12,7 +12,7 @@
  $myfile = fopen($filepath, "r+") or die("Unable to open file!");
  
 ?>
-<!DOCTYPE html>
+<!DOCtypeId html>
 <html lang="en" >
 <head>
     <meta charset="UTF-8">
@@ -36,28 +36,28 @@
 
       <form action="registerNew.php" method="get" class = "devConfigForm">
         <label for="devName">Device Name :</label>
-        <input type="text" name="devName" class = "devConfigInput" id="forDevName">
+        <input typeId="text" name="devName" class = "devConfigInput" id="forDevName">
         <br>
         <label for="devIndex">Device Index :</label>
-        <input type="number" min="0" name="devIndex" class = "devConfigInput" id="forIndex">
+        <input typeId="number" min="0" name="devIndex" class = "devConfigInput" id="forIndex">
         <br>
         <label for="devIndex">Device Windows :</label>
-        <input type="number" min="1" max="3" name="devWindow" class = "devConfigInput" id="forWindow">
+        <input typeId="number" min="1" max="3" name="devWindow" class = "devConfigInput" id="forWindow">
         <br>
         <label for="port">Device Id(important)</label>
-        <input type="text" name="port" id="forPort" class = "devConfigInput">
+        <input typeId="text" name="port" id="forPort" class = "devConfigInput">
         <br>
         <label for="details">Details for Device :</label>
-        <input type="text" name="details" id="forDetails" class = "devConfigInput">
+        <input typeId="text" name="details" id="forDetails" class = "devConfigInput">
         <br>
         <label for="max">Max :</label>
-        <input type="text" name="max" id="forMax" class = "devConfigInput">
+        <input typeId="text" name="max" id="forMax" class = "devConfigInput">
         <br>
         <label for="min">Min :</label>
-        <input type="text" name="min" id="forMin" class = "devConfigInput">
+        <input typeId="text" name="min" id="forMin" class = "devConfigInput">
         <br>
         <label for="step">Step By :</label>
-        <input type="text" name="step" id="forstep" class = "devConfigInput">
+        <input typeId="text" name="step" id="forstep" class = "devConfigInput">
         <br>
        
 
@@ -91,13 +91,13 @@
  <div class="bottombar">
     <form class="theForm" id="theiForm" method="get" target="theSubmitter" action="/web/ComponentUpdate.php">
 
-        <input type="text" name="Val0" id="val0" class="theFormValues" value="0">
-        <input type="text" name="Val1" id="val1" class="theFormValues" value="0">
-        <input type="text" name="Val2" id="val2" class="theFormValues" value="0">
-        <input type="text" name="Val3" id="val3" class="theFormValues" value="0">
-        <input type="text" name="UserId" id="UserId" class="theFormValues" value="<?php echo $userId;?>">
-        <input type="text" name="Port" id="deviceId" class="theFormValues" value="0">
-        <button type="submit"  class="theFormValues" id="theButton">Submit</button>
+        <input typeId="text" name="Val0" id="val0" class="theFormValues" value="0">
+        <input typeId="text" name="Val1" id="val1" class="theFormValues" value="0">
+        <input typeId="text" name="Val2" id="val2" class="theFormValues" value="0">
+        <input typeId="text" name="Val3" id="val3" class="theFormValues" value="0">
+        <input typeId="text" name="UserId" id="UserId" class="theFormValues" value="<?php echo $userId;?>">
+        <input typeId="text" name="Port" id="deviceId" class="theFormValues" value="0">
+        <button typeId="submit"  class="theFormValues" id="theButton">Submit</button>
     </form>
     <iframe src="/Web/iframeTester.php" frameborder="0" class="theSubmit" name="theSubmitter"></iframe>
  </div>
@@ -142,7 +142,7 @@ while($eofile)
     $thestrarr = explode("/",$thestr);
     if($thestrarr[1] == "ena"){
       $theabout= "'".trim($thestrarr[7])."'";
-      $comm ="addObject($thestrarr[6],'".$thestrarr[5]."',typeToObject('".$thestrarr[5]."','".$thestrarr[4]."'),$theabout);";
+      $comm ="addObject($thestrarr[6],'".$thestrarr[5]."',typeIdToObject('".$thestrarr[5]."','".$thestrarr[4]."'),$theabout);";
       echo  "setTimeout(() => {";  
       echo $comm;
       echo "},1000);";
@@ -151,7 +151,32 @@ while($eofile)
 echo "     ";
 ?>
 
+function addObject(port, name, deviceObject, about = "") {
 
+var theContainer = document.createElement("DIV");
+var dltButton = document.createElement("DIV");
+var theInContainer = document.createElement("DIV");
+theContainer.setAttribute("class", name);
+theInContainer.setAttribute("id", port);
+theInContainer.draggable = "true";
+dltButton.setAttribute("id", "deleteBtn");
+dltButton.innerHTML = optionsvg;
+theInContainer.style = "padding:5px;width:fit-content;height:fit-content;display:flex;color:blue;border:2px solid black;margin:5px;";
+dltButton.style = "float:right;top:0;left:calc(100%);width:50px;background-color:rgba(1,1,1,1);cursor:pointer;height:50px;text-align:center;line-height:50px;color:white;position:absolute;top:0;margin:1px; right:0px;";
+theContainer.style = "transition:2s;width:fit-content;height:fit-content;border:2px solid black;font-size:20px;position: relative;display:flex; ";
+dltButton.addEventListener("click", () => { options(dltButton); });
+theContainer.appendChild(theInContainer);
+theContainer.appendChild(dltButton);
+middleibar.appendChild(theContainer);
+var theLabel = document.createElement("LABEL");
+theLabel.htmlfor = '' + about;
+theLabel.innerText = '' + about + ':';
+theInContainer.appendChild(theLabel);
+theInContainer.appendChild(deviceObject);
+
+
+
+}
 
 function menuEnable(){
   rightibar.style='width:10%;';
@@ -220,38 +245,110 @@ function uploadData(val0,val1,val2,val3){
 }
 
 function downloadData(userId,devId){
-
-
-  return {"","","",""};
+  return null;
   
 }
 
-function displayForm(type){
+function displayForm(typeIdob){
+ let typeId = typeIdob.id;
  leftibar.style = "height:80%;";
- devName.value = type.id;
- switch(type){
-  case "binSwitch": 
-    devMax.value = 1;
+ devName.value = typeIdob.name;
+ switch(typeIdob.getAttribute("type")){
+  case "range": 
+    devMax.value = 255;
     devMin.value = 0;
     devStep.value = 1;
     devIndex.value = 0;
     devWin.value = 1;
     break;
 
-  case "variSwitch": 
-    devMax.value = 255;
-    devMin.value = 0;
-    devStep.value = 1;
-    devIndex.value = 1;
-    devWin.value = 1;
-    break ; 
-
-  case "justValue":
+  case "text":
     devIndex.value = 2;
     devWin.value = 1;
     break ;
   
  }
+
+
+}
+
+function typeIdToObject(name, devtypeId) {
+  if (devtypeId == 0) { return createBinSwitch(name); }
+  else if (devtypeId == 1) { return createVarSwitch(name); }
+  else if (devtypeId == 2) { return createJustValue(name); }
+  else if (devtypeId == 3) { return createMaptracker(name); }
+  else { return none; }
+}
+
+function createDevice() {
+  addObject(devPort.value, devName.value, typeIdToObject(devName.value, devtypeId.value), devDetails.value);
+}
+
+var isoptiontabopen = false;
+
+function options(obj) {
+  let optiontab = document.createElement("DIV");
+  optiontab.setAttribute("class", "optionbars");
+  optiontab.style = "width:300px;height:300px;top:calc(50vh-50px);left:calc(50vw - 150px);margin:1px;visibility:visible;";
+  optiontab.style.transition = "2s";
+  let thisObject = obj;
+  let thisparent = obj.parentElement;
+  let thischild = obj.childElements;
+  switch (obj.parentElement.lastElementChild.className == "optionbars") {
+    case false:
+      isoptiontabopen = !(false && isoptiontabopen);
+      obj.innerHTML = unoptionsvg;
+      obj.parentElement.appendChild(optiontab);
+      addOptions(optiontab);
+      break;
+    case true:
+      isoptiontabopen = !(true && isoptiontabopen);
+      obj.innerHTML = optionsvg;
+      obj.parentElement.lastElementChild.remove();
+      break;
+  }
+}
+
+function createBinSwitch(name) {
+  let theInput = document.createElement("INPUT");
+  theInput.setAttribute("type", "range");
+  theInput.style.cursor = "pointer";
+  theInput.name = name;
+  theInput.min = "0";
+  theInput.max = "1";
+  theInput.step = "1";
+  theInput.addEventListener("change", () => {lastSelectedDevice = '' + (theInput.parentElement).id; formId.value = lastSelectedDevice; upload1(theInput.value); });
+  return theInput; 
+ 
+}
+function createVarSwitch(name) {
+  let theInput = document.createElement("INPUT");
+  theInput.setAttribute("type", "range");
+  theInput.name = name;
+  theInput.min = "1";
+  theInput.max = "256";
+  theInput.step = "1";
+  theInput.addEventListener("change", () => { lastSelectedDevice = '' + (theInput.parentElement).id; formId.value = lastSelectedDevice; upload1(theInput.value); });
+  return theInput;
+}
+
+function createJustValue(name) {
+  let theInput = document.createElement("INPUT");
+  theInput.setAttribute("type", "text");
+  theInput.name = name;
+  theInput.addEventListener("change", () => { lastSelectedDevice = '' + (theInput.parentElement).id; formId.value = lastSelectedDevice; upload1(theInput.value); });
+  return theInput;
+}
+
+function createMaptracker(name) {
+  let newElement = document.createElement("IFRAME");
+  let mapSpacestyle = " min-width:100px;max-width:80%;min-height:150px;max-height:10%;background:white;border:3px solid black; ";
+  newElement.style= mapSpacestyle;
+  newElement.setAttribute("src", "www.googlemap.com");
+  newElement.setAttribute("name", name);
+  let thisdevId = newElement.parentElement.id;
+  // let dataList = {"","","",""};
+  newElement.addEventListener("hover", () => { setInterval(100, () => { dataList = downloadData( userId, thisdevId) }); });
 
 
 }
