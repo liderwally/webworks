@@ -9,9 +9,9 @@ $sqla='select * from newtable where Email="'.$theEmail.'"';
 $database='myNewDb';
 $conn = mysqli_connect('localhost:3306','root','mimisijui04390',$database);
 if(!$conn){
-    $conn =  mysqli_connect("localhost","newdb11","sL3s03!x4{Z6K7t","mynewdb");
+    $conn =  mysqli_connect("Localhost","id19191420_newdb11","sL3s03!x4{(Z6K7t","id19191420_mynewdb");
         if(!$conn){
-    die("couldn't connect".mysqli_error());}
+    die("couldn't connect".mysqli_error($dbConnect));}
 }
 if(mysqli_query($conn,$sqla))
 {

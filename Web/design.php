@@ -173,9 +173,6 @@ theLabel.htmlfor = '' + about;
 theLabel.innerText = '' + about + ':';
 theInContainer.appendChild(theLabel);
 theInContainer.appendChild(deviceObject);
-
-
-
 }
 
 function menuEnable(){

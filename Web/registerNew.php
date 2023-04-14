@@ -11,7 +11,7 @@ $noter = false;
           
 $dbConnect= mysqli_connect('localhost:3306','root','mimisijui04390',$database);
 if(!$dbConnect){
-    $dbConnect=  mysqli_connect("localhost","newdb11","sL3s03!x4{Z6K7t","mynewdb");
+    $dbConnect=  mysqli_connect("localhost","newdb11","sL3s03!x4{(Z6K7t","mynewdb");
         if(!$dbConnect){
     die("couldn't connect".mysqli_error());}
 }
