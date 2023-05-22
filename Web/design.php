@@ -12,15 +12,226 @@
  $myfile = fopen($filepath, "r+") or die("Unable to open file!");
  
 ?>
-<!DOCtypeId html>
+<!DOCtype html>
 <html lang="en" >
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/web/design.css">
+    <link rel="stylesheet" href="./design.css" type ="text/css">
     <title>Control Panel</title>
 </head>
+
+<style>
+  body{
+    width:100vw;height:100vh;display:inline-block;overflow-x:hidden;overflow-y:hidden;background-color:rgba(255,255,255,1);
+   }
+.topbar{
+    width: 100%;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    left:0%;
+    bottom:90%;
+    height:10%;z-index: 1;
+    background-color:rgba(1,166,1,0.3);
+    display:flex;
+    position: absolute; 
+    border-bottom:2px ridge rgba(0,0,0,0.4);
+  }
+
+.rightbar{
+
+    top:10%;z-index: 2;
+    width:10%;height:80%;right:0px;
+    background-color:rgba(1,1,1,0.5);
+    display:flex;position:absolute;
+    transition:2s;display: inline;
+
+  }
+.leftbar{
+  top:10%;z-index:100;
+  width:90%;height:0%;
+  transition: 1s;
+  background-color:rgba(2, 2, 2, 0.2);
+  display:flex;
+  position:absolute;
+  transition:2s;
+  display: inline;
+  overflow-y: hidden;
+  backdrop-filter: blur(8px);-webkit-backdrop-filter: blur(8px);
+
+  
+}
+.middlebar{
+    width:100%;left:0;top:10%;
+    min-height: 90%;
+    background-color:rgba(0,0,0,0.2);
+    position:absolute;
+    transition:2s;
+    display: inline-block;
+    flex-direction: row;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border-bottom:2px ridge rgba(0,0,0,0.4);
+  }
+.bottombar{
+    width: 100%;
+    height:30%;
+    left:0%;
+    bottom:0%;
+    opacity: 0.4;
+    position:absolute;z-index: -10;
+    background-color:rgba(1,166,1,0.3);
+    border-bottom:2px ridge rgba(0,0,0,0.4);
+  }
+.menuButton{
+    text-align:center;
+    width:25px;
+    line-height:25px;
+    height:25px;
+    background-color:rgba(1,166,1,0.3);
+    color:white;
+    border:2px groove black;
+    transition:2s;
+    position:absolute;
+    z-index:300;
+    justify-content:center;
+    border-top-left-radius: 25px;
+    cursor: pointer;
+
+  }
+
+#button1{
+    right:-5px;
+    bottom: -500px;
+  }
+   
+#button2{
+    right:-5px;
+    bottom: -2px;
+  }
+   
+#icon{
+    left:5px;
+    width: 200px;
+    height: 100px;
+    padding-top: 5px;
+    position: relative;
+    overflow: hidden;
+  }
+   
+.addDevice{
+    width:100%;
+    height:50px;
+    color:white;
+    overflow-x:hidden;
+    background-color:rgba(0,0,0,0.7);
+    text-align:center;
+    align-items:center;
+    line-height:100%;
+    position:relative;
+  }
+   
+.option{
+    width:80%;
+    height:50px;padding-top: 3px;
+    color:white;
+    overflow-x:hidden;
+    background-color:rgba(0,0,0,0.2);
+    text-align:center;
+    left:10% ;
+    line-height:100%;
+    position:relative;
+    cursor: pointer;
+  }
+.outcover{
+    width:100%;
+    top:3%;
+    height:33%;
+    background-color:grey;
+    display:inline-block;
+    position:relative;
+    transition:2s;
+  }
+.theForm{
+  width:50%;padding-top: 0%;top: 10%;
+  display: inline;height: 80%;
+  position:absolute;
+  height:aut0;
+
+}
+.theSubmit{
+  width:50%;
+  background-color: rgba(0,0,0,0.2);
+  height:80%;padding-top:0;
+  position:absolute;top: 10%;
+  right: 0%;
+  cursor: pointer;
+}
+.theFormValues{
+  width: 50%;left: 10%;
+  height:20px;padding-left: 10px;
+}
+#theButton{
+  width: 15%;
+  height: 15%;
+  background-color: gray;
+  cursor: pointer;
+  
+}
+.devConfigForm{
+  position: relative;
+  width:60%;
+  height:fit-content;
+  border:1px groove black;
+  border-radius:5%;margin:auto;
+  background-color:rgba(255,255,255,0.7);
+  mix-blend-mode:normal;
+  box-shadow:inset 2px 4px 8px 2px black;
+  padding: 50px;
+  top:25%;
+  justify-items: center;    
+}
+.formShower{
+  padding: 10px;
+  width: 20px;
+  position: absolute;
+  height: 20px;
+  background-color: rgba(0,0,0,0.2);
+  border: 2px solid rgba(0,0,0,1);
+  cursor: pointer;
+  color: aliceblue;
+}
+
+#configButton{
+  justify-self: center;
+  position: absolute;
+  width: auto;
+  padding: 10px;
+  left: 50%;
+  bottom: 10%;
+  cursor: pointer;
+  z-index: 120;
+  border-radius: 5%;
+
+}
+.devConfigInput{
+  position: absolute;
+  background-color: rgba(255,255,255,0.7);
+  left: 50%;
+}
+.optionbars{
+  background-color: beige;
+  color: black;
+  border-radius: 15%;
+  border:1px solid black;
+  cursor:pointer;
+  text-align:center;
+  line-height:50px;
+  position:absolute;
+}
+</style>
+
 <body>
     <div class="hidbar"></div>
     <div class="topbar">

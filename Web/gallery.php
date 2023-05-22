@@ -31,22 +31,21 @@
         height:60%;position:absolute;
         box-shadow:0 0 5px 4px black;
         border-radius:5%;
+        background-size:cover;
+        background-repeat:no-repeat; 
 }
 #t0{
     background-image:url("/pictures/hotel.jpg");
-        background-size:cover;
-        background-repeat:no-repeat; 
+
 }
 #t1{
     background-image:url("/pictures/nature4.jpg");
-        background-size:cover;
-        background-repeat:no-repeat; 
+
 }
 #t2{
-    background-image:url("/pictures/nature3.jpg");
-        background-size:cover;
-        background-repeat:no-repeat; 
+    background-image:url("/pictures/nature3.jpg"); 
 }
+
   .details{
     background-color:rgba(0,0,0,0.4);
     width:100%;color:white;

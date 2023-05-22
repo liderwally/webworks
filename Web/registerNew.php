@@ -11,7 +11,7 @@ $noter = false;
           
 $dbConnect= mysqli_connect('localhost:3306','root','mimisijui04390',$database);
 if(!$dbConnect){
-    $dbConnect=  mysqli_connect("localhost","newdb11","sL3s03!x4{(Z6K7t","mynewdb");
+    $dbConnect=  mysqli_connect("Localhost","newdb11","sL3s03!x4{(Z6K7t","mynewdb");
         if(!$dbConnect){
     die("couldn't connect".mysqli_error());}
 }
@@ -63,11 +63,11 @@ else{
 <script src="hidbar.js"></script>
 <script>
 var noter  = "";
-noter = <?php echo $noter;  ?>;
+noter = <?php echo '"'.$noter.'"'; ?>;
 alert(noter);
 if(noter){
-alert("")
-alert("Dear"+<?echo $nam;?> +",\n Your details have been recorded successfully.");
+alert("");
+alert("Dear"+<?php echo '"'.$nam.'"';?> +",\n Your details have been recorded successfully.");
 window.location.href="login.php";
 }
 </script>
