@@ -15,12 +15,9 @@
                    $_SESSION['val2']='0';
                    $_SESSION['val3']='0';
                }
-               $dbtable='walDevices';
-               $sqla='update '.$dbtable.' set val0="'.$_GET['Val0'].'", val1="'.$_GET['Val1'].'",val2="'.$_GET['Val2'].'",val3="'.$_GET['Val3'].'" where ID="'.$_GET['Port'].'" and UsId='.$_GET['UserId'].'; ';
+                $dbtable='walDevices';
+                $sqla='update '.$dbtable.' set val0="'.$_GET['Val0'].'", val1="'.$_GET['Val1'].'",val2="'.$_GET['Val2'].'",val3="'.$_GET['Val3'].'" where ID="'.$_GET['Port'].'" and UsId='.$_GET['UserId'].'; ';
                 $database='myNewDb';
-                
-            
-                        
                         $Conn = mysqli_connect("localhost","newdb11","sL3s03!x4{Z6K7t","mynewdb");
                         $conn= mysqli_connect('localhost:3306','root','mimisijui04390',$database);
                         if(!$conn){die("couldnt connect".mysqli_error());}

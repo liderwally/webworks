@@ -60,7 +60,7 @@ else{
     </div>
     
 </body>
-<script src="hidbar.js"></script>
+<script src="/Web/hidbar.js"></script>
 <script>
 var noter  = "";
 noter = <?php echo '"'.$noter.'"'; ?>;

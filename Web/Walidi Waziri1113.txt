@@ -1,5 +1,0 @@
->0/ena/2911221526/W/0/binSwitch/1113/front lamp
->1/ena/2911221526/W/0/binSwitch/1123/sebule lamp
->2/ena/2911221526/W/0/binSwitch/1133/veranda lamp
->3/ena/2911221526/W/0/binSwitch/1143/toilet lamp
->4/ena/2911221526/W/1/varSwitch/1153/sebulefan

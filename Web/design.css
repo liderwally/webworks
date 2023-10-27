@@ -1,207 +1,326 @@
 body{
-    width:100vw;height:100vh;display:inline-block;overflow-x:hidden;overflow-y:hidden;background-color:rgba(255,255,255,1);
-   }
+  width:100vw;
+  height:100vh;
+  display:block;
+  overflow-x:hidden;
+  overflow-y:hidden;
+  /* background-image:url("/pictures/iot 2.jpeg");  */
+  /* background-size:cover;  */
+  background: linear-gradient(to top right,#004D73 0%, #004D78 100%);
+  /* background: linear-gradient(to top right,#c71f5a 0%, #5600e7 100%); */
+ }
 .topbar{
-    width: 100%;
-    overflow-x:hidden;
-    overflow-y:hidden;
-    left:0%;
-    bottom:90%;
-    height:10%;z-index: 1;
-    background-color:rgba(1,166,1,0.3);
-    display:flex;
-    position: absolute; 
-    border-bottom:2px ridge rgba(0,0,0,0.4);
-  }
+  position: absolute; 
+  width: calc(100% - 35px);
+  top:10px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  left: 5px;
+  padding-left: 20px;
+  height: 10vh;
+
+  z-index: 2;
+  background-color:#c6c3a3; /*#FF8C00;*/
+  color:#004D73;/*#2288ff; c6d3a3;*/
+  display:flex;
+  border-radius: 10px;
+  border : black solid 2px;
+  backdrop-filter: blur(8px);-webkit-backdrop-filter: blur(8px);
+}
 
 .rightbar{
+border-radius: 10px;
+  top:calc(10% + 25px);z-index: 2;
+  margin-top: 10px;
+  border: 2px solid white;
+  border-radius: 10px;
+  width:10%;height:calc(100vh - 10% - 35px);
+  right:-10px;
+  background-color:rgba(1,1,1,0.5);
+  display:flex;position:absolute;
+  transition:1s;display: inline;
 
-    top:10%;z-index: 2;
-    width:10%;height:80%;right:0px;
-    background-color:rgba(1,1,1,0.5);
-    display:flex;position:absolute;
-    transition:2s;display: inline;
-
-  }
+}
 .leftbar{
-  top:10%;z-index:100;
-  width:90%;height:0%;
-  transition: 1s;
-  background-color:rgba(2, 2, 2, 0.2);
-  display:flex;
-  position:absolute;
-  transition:2s;
-  display: inline;
-  overflow-y: hidden;
-  backdrop-filter: blur(8px);-webkit-backdrop-filter: blur(8px);
+top:10%;
+margin-top: 10px;
+z-index:1;
+left: 5% ;
+width:90%;
+height:0%;
+transition: 1s;
+border: 2px solid white;
+border-radius: 10px;
+background-color:rgba(2, 2, 2, 0.2);
+display:flex;
+position:absolute;
+transition:2s;
+display: block;
+overflow-y: hidden;
+backdrop-filter: blur(8px);-webkit-backdrop-filter: blur(8px);
 
-  
+
 }
 .middlebar{
-    width:100%;left:0;top:10%;
-    min-height: 90%;
-    background-color:rgba(0,0,0,0.2);
-    position:absolute;
-    transition:2s;
-    display: inline-block;
-    flex-direction: row;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    border-bottom:2px ridge rgba(0,0,0,0.4);
-  }
+  width:calc(100% - 35px);
+  left:5px;
+  top:10%;
+  height:calc(100vh - 10% - 10px);
+  bottom:0px;
+  color: white;
+  margin-top:20px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color:rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);-webkit-backdrop-filter: blur(4px);
+  position:absolute;
+  transition:1s;
+  display: flex;
+  flex-direction: row;
+  overflow-x: clip;
+  overflow-y: hidden;
+  border : gray solid 2px;
+}
 .bottombar{
-    width: 100%;
-    height:30%;
-    left:0%;
-    bottom:0%;
-    opacity: 0.4;
-    position:absolute;z-index: -10;
-    background-color:rgba(1,166,1,0.3);
-    border-bottom:2px ridge rgba(0,0,0,0.4);
-  }
+  width: 100%;
+  height:30%;
+  left:0%;
+  bottom:0%;
+  opacity: 0.4;
+  display : none;
+  position:absolute;z-index: -10;
+  background-color:rgba(1,166,1,0.3);
+  border-bottom:2px ridge rgba(0,0,0,0.4);
+}
 .menuButton{
-    text-align:center;
-    width:25px;
-    line-height:25px;
-    height:25px;
-    background-color:rgba(1,166,1,0.3);
-    color:white;
-    border:2px groove black;
-    transition:2s;
-    position:absolute;
-    z-index:300;
-    justify-content:center;
-    border-top-left-radius: 25px;
-    cursor: pointer;
+  text-align:center;
+  width:25px;
+  line-height:25px;
+  height:25px;
+  background-color:rgba(1,166,1,0.3);
+  color:white;
+  border:2px groove black;
+  transition:2s;
+  position:absolute;
+  z-index:300;
+  justify-content:center;
+  border-top-left-radius: 25px;
+  cursor: pointer;
 
-  }
+}
 
 #button1{
-    right:-5px;
-    bottom: -500px;
-  }
-   
+  right:-5px;
+  bottom: -500px;
+}
+ 
 #button2{
-    right:-5px;
-    bottom: -2px;
-  }
-   
+  right:-5px;
+  bottom: -2px;
+}
+ 
 #icon{
-    left:5px;
-    width: 200px;
-    height: 100px;
-    padding-top: 5px;
-    position: relative;
-    overflow: hidden;
-  }
-   
-.addDevice{
-    width:100%;
-    height:50px;
-    color:white;
-    overflow-x:hidden;
-    background-color:rgba(0,0,0,0.7);
-    text-align:center;
-    align-items:center;
-    line-height:100%;
-    position:relative;
-  }
-   
-.option{
-    width:80%;
-    height:50px;padding-top: 3px;
-    color:white;
-    overflow-x:hidden;
-    background-color:rgba(0,0,0,0.2);
-    text-align:center;
-    left:10% ;
-    line-height:100%;
-    position:relative;
-    cursor: pointer;
-  }
-.outcover{
-    width:100%;
-    top:3%;
-    height:33%;
-    background-color:grey;
-    display:inline-block;
-    position:relative;
-    transition:2s;
-  }
-.theForm{
-  width:50%;padding-top: 0%;top: 10%;
-  display: inline;height: 80%;
-  position:absolute;
-  height:aut0;
+  left:5px;
+  width: 200px;
+  height: 100px;
+  padding-top: 5px;
+  position: relative;
+  overflow: hidden;
+}
+ 
+.modDevice{
+  width:100%;
+  height:50px;
+  color:white;
+  overflow-x:hidden;
+  background-color:rgba(0,0,0,0.7);
+  text-align:center;
+  align-items:center;
+  line-height:100%;
+  position:relative;
+  padding-top: 30px;
+  border-bottom: 1px solid white;
+  border-radius:10px;
+  cursor:pointer;
+}
+ 
+.modDevice:hover{
+  color: black;
+  background-color:rgba(255,255,255,0.7);
 
 }
+.option{
+  width:80%;
+  height:50px;padding-top: 3px;
+  color:white;
+  overflow-x:hidden;
+  background-color:rgba(0,0,0,0.2);
+  text-align:center;
+  left:10% ;
+  line-height:100%;
+  position:relative;
+  cursor: pointer;
+  border-radius:10px;
+}
+.outcover{
+  width:100%;
+  top:3%;
+  height:33%;
+  background-color:grey;
+  display:inline-block;
+  position:relative;
+  transition:2s;
+}
+
 .theSubmit{
-  width:50%;
-  background-color: rgba(0,0,0,0.2);
-  height:80%;padding-top:0;
-  position:absolute;top: 10%;
-  right: 0%;
-  cursor: pointer;
+width:50%;
+background-color: rgba(0,0,0,0.2);
+height:80%;
+padding-top:0;
+position:absolute;
+top: 10%;
+right: 0%;
+cursor: pointer;
 }
-.theFormValues{
-  width: 50%;left: 10%;
-  height:20px;padding-left: 10px;
-}
+
 #theButton{
-  width: 15%;
-  height: 15%;
-  background-color: gray;
-  cursor: pointer;
-  
+width: 150px;
+height: 70px;
+border-radius: 5px;
+background-color: gray;
+position: relative;
+top :calc(100% - 75px) ;
+left:calc((100% - 150px) / 2);
+cursor: pointer;
+
 }
-.devConfigForm{
-  position: relative;
-  width:60%;
-  height:fit-content;
-  border:1px groove black;
-  border-radius:5%;margin:auto;
-  background-color:rgba(255,255,255,0.7);
-  mix-blend-mode:normal;
-  box-shadow:inset 2px 4px 8px 2px black;
-  padding: 50px;
-  top:25%;
-  justify-items: center;    
-}
+
+
 .formShower{
-  padding: 10px;
-  width: 20px;
-  position: absolute;
-  height: 20px;
-  background-color: rgba(0,0,0,0.2);
-  border: 2px solid rgba(0,0,0,1);
-  cursor: pointer;
-  color: aliceblue;
+padding: 10px;
+margin: 20px;
+width: 20px;
+position: absolute;
+height: 20px;
+background-color: rgba(0,0,0,0.2);
+border: 2px solid white;
+cursor: pointer;
+border-radius: 5px;
+text-align: center;
+color: aliceblue;
+}
+.slideSwitch{
+padding: 10px;
+margin: 20px;
+width:fit-content;
+position: relative;
+height: 100px;
+background-color: rgba(0,0,0,0.2);
+border: 2px solid white;
+left: 50px;
+cursor: pointer;
+border-radius: 5px;
+text-align: center;
+color: white;
 }
 
 #configButton{
-  justify-self: center;
-  position: absolute;
-  width: auto;
-  padding: 10px;
-  left: 50%;
-  bottom: 10%;
-  cursor: pointer;
-  z-index: 120;
-  border-radius: 5%;
+justify-self: center;
+position: absolute;
+width: auto;
+padding: 10px;
+left: 50%;
+bottom: 10%;
+cursor: pointer;
+z-index: 120;
+border-radius: 5%;
 
 }
-.devConfigInput{
-  position: absolute;
-  background-color: rgba(255,255,255,0.7);
-  left: 50%;
+.devConfigInput , select{
+position: absolute;
+background-color: rgba(255,255,255,0.7);
+left: 50%;
 }
 .optionbars{
-  background-color: beige;
-  color: black;
-  border-radius: 15%;
-  border:1px solid black;
-  cursor:pointer;
-  text-align:center;
-  line-height:50px;
-  position:absolute;
+background-color: beige;
+color: black;
+border-radius: 15%;
+border:1px solid black;
+cursor:pointer;
+text-align:center;
+line-height:50px;
+position:absolute;
+}
+
+
+.devFormContainer{
+position: absolute;
+width:60%;
+height:60%;
+border:3px solid black;
+border-radius:10px;
+margin:auto;
+background-color:rgba(255,255,255,0.7);
+box-shadow:inset 2px 4px 8px 2px black;
+padding: 50px;
+backdrop-filter: blur(4px);
+-webkit-backdrop-filter: blur(4px);
+top:15vh;
+left:20%;
+min-width: 300px;
+justify-items: center;
+z-index: 100;
+visibility: hidden;
+display: block;
+}
+.devForm{
+position:absolute;
+width:60%;
+top:20%;
+left:20%;
+padding:20px;
+min-height:250px;
+height:fit-content;
+background-color: rgba(255,255,255,0.7);
+display:block;
+
+visibility:hidden;
+}
+.devForm input{
+justify-self:top;
+align-self:center;
+float:right;
+background-color:salmon;
+width:70%;
+visibility: visible;
+height: 25px;
+align-self:top;
+color:white;
+position:relative;
+visibility: inherit;
+
+}
+.devForm label{
+color:black;
+left:0px;
+width:20%;
+float:left;
+border:3px solid black;
+position: relative;
+background-color:#0000;
+
+}
+
+.devcompnt{
+width: 300px;
+height: 100px;
+background-color: red;
+position: relative;
+justify-items: center;
+border:3px solid black;
+border-radius:10px;
+align-self:center;
+left: calc( 50% - 150px );
+margin-top: 10px;
+text-align:center;
 }

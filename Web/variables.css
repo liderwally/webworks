@@ -1,0 +1,63 @@
+:root {
+
+
+
+
+  /******************  colors  ***************************/
+
+
+
+
+/* basic colors */
+ 
+  --base: #000000;
+  --base-color:  #004D73;
+  --first-color: #ffffff;
+  --second-color: #444fb3;  /*  #c6d3a3;*/
+  --third-color: #FF8C00;
+  --fourth-color: #C0C0C0;
+  --fifth-color: #3700b3;
+  --sixth-color: beige;
+  --base: #000;
+
+  /* font colors */
+
+  --base-font-color: #fff;
+  --first-font-color: #03dac6;
+  --second-font-color: var(--base);
+  --third-font-color: ;
+  --fourth-font-color: ;
+
+
+
+
+  /* random styles */
+
+  --background-color: var(--my-base);
+  --border-radius: .25rem;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --line-height: normal;
+  --letter-spacing: -0.1em;
+  --transition: all ease-in-out .8s;
+  --hover-scale: 1.2;
+  --focus-outline: rgba(66, 153, 225, .5) !important;
+
+  /* random data */
+
+  --integer-0: 0;
+  --integer-1: 0;
+  --integer-2: 0;
+  --integer-3: 0;
+  --integer-4: 0;
+  --float-0: 0.00;
+  --float-1: 0.00;
+  --float-2: 0.00;
+  --float-3: 0.00;
+  --float-4: 0.00;
+  --string-0: 'lorem ipsum dolor';
+  --string-1: 'lorem ipsum dolor';
+  --string-2: 'lorem ipsum dolor';
+  --string-3: 'lorem ipsum dolor';
+  --string-4: 'lorem ipsum dolor';
+
+}

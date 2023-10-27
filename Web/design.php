@@ -1,88 +1,152 @@
-<?php 
+<?php
  $userId='0';
  $userName='0';
  $eofile = true ;
+
+ include "./aes.php";
+
  if($_GET){
    $userId=$_GET['ID'];
    $userName=$_GET['Name'];
  }
- $fileAppender = $userName.$userId ;
- $filepath =$fileAppender.".txt";
- //$fileConnect= fopen($filepath,"x");
- $myfile = fopen($filepath, "r+") or die("Unable to open file!");
- 
+
 ?>
-<!DOCtype html>
+<!DOCTYPE html>
 <html lang="en" >
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./design.css" type ="text/css">
+    <link rel="stylesheet" href="/Web/variables.css" type ="text/css">
+    <!-- <link rel="stylesheet" href="./design.css" type ="text/css"> -->
     <title>Control Panel</title>
 </head>
 
 <style>
-  body{
-    width:100vw;height:100vh;display:inline-block;overflow-x:hidden;overflow-y:hidden;background-color:rgba(255,255,255,1);
-   }
-.topbar{
-    width: 100%;
-    overflow-x:hidden;
-    overflow-y:hidden;
-    left:0%;
-    bottom:90%;
-    height:10%;z-index: 1;
-    background-color:rgba(1,166,1,0.3);
-    display:flex;
-    position: absolute; 
-    border-bottom:2px ridge rgba(0,0,0,0.4);
+body{
+  width:100vw;
+  height:100vh;
+  display:block;
+  padding:5px; 
+  margin:0px; 
+  overflow-x:hidden;
+  overflow-y:hidden;
+  /* background-image:url("/pictures/iot 2.jpeg");  */
+  /* background-size:cover;  */
+  /* background-color: black; */
+  background: var(--my-base) ;
   }
+.topbar{
+  position: absolute; 
+  width: calc(100% - 35px);
+  top:12px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  left: 5px;
+  padding-left: 20px;
+  height: 10vh;
+  z-index: 2;
+  background-color:var(--base-color);
+  color:var(--base-font-color);/*#2288ff; c6d3a3;*/
+  display:flex;
+  border-radius: 10px;
+  border:1px solid var(--fifth-color);
+  backdrop-filter: blur(8px);-webkit-backdrop-filter: blur(8px);
+}
 
 .rightbar{
-
-    top:10%;z-index: 2;
-    width:10%;height:80%;right:0px;
-    background-color:rgba(1,1,1,0.5);
-    display:flex;position:absolute;
-    transition:2s;display: inline;
-
-  }
+  border-radius: 10px;
+  top:calc(10% + 20px);
+  z-index: 2;
+  top-margin: 0px;
+  border:1px solid var(--fifth-color);
+  border-radius: 10px;
+  width:10%;
+  height:calc(100vh - 10% - 20px);
+  right:-10px;
+  color:var(--base-font-color);
+  background-color:var(--base-color);
+  display:flex;
+  position:absolute;
+  transition:1s;
+  display: block;
+}
 .leftbar{
-  top:10%;z-index:100;
-  width:90%;height:0%;
+  top:10%;
+  margin-top: 10px;
+  z-index:1;
+  left: 5% ;
+  width:90%;
+  height:0%;
   transition: 1s;
-  background-color:rgba(2, 2, 2, 0.2);
+  border:1px solid var(--fifth-color);
+  border-radius: 10px;
+  background-color:var(--base-color);
+  color:var(--base-font-color);
   display:flex;
   position:absolute;
   transition:2s;
-  display: inline;
+  display: block;
   overflow-y: hidden;
   backdrop-filter: blur(8px);-webkit-backdrop-filter: blur(8px);
 
   
 }
 .middlebar{
-    width:100%;left:0;top:10%;
-    min-height: 90%;
-    background-color:rgba(0,0,0,0.2);
+    width:calc(100% - 35px);
+    left:5px;
+    top:10%;
+    height:calc(75% - 5px);
+    /* bottom:0px; */
+    color:var(--base-font-color);
+    margin-top:20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color:var(--base-color);
+    backdrop-filter: blur(4px);-webkit-backdrop-filter: blur(4px);
     position:absolute;
-    transition:2s;
-    display: inline-block;
+    transition:1s;
+    display: block;
+
+    /* column-width:30%;
+    column-count:2; */
+    /* column-rule: 1px solid lightblue; */
     flex-direction: row;
     overflow-x: hidden;
-    overflow-y: scroll;
-    border-bottom:2px ridge rgba(0,0,0,0.4);
+    overflow-y: clip;
+    border:1px solid var(--fifth-color);
   }
 .bottombar{
-    width: 100%;
-    height:30%;
-    left:0%;
-    bottom:0%;
-    opacity: 0.4;
-    position:absolute;z-index: -10;
-    background-color:rgba(1,166,1,0.3);
-    border-bottom:2px ridge rgba(0,0,0,0.4);
+    width: calc(100% - 35px);
+    height:calc(10% - 15px);
+    left:5px;
+    bottom:0px;
+    margin:0px;
+    padding:10px;
+    border-radius: 10px;
+    /* display : none; */
+    backdrop-filter: blur(4px);-webkit-backdrop-filter: blur(4px);
+    position:absolute;
+    background-color:var(--base-color);
+    color:var(--base-font-color);
+    border:1px solid var(--fifth-color);
+  }
+  .userProfile{
+    width: 70px;
+    height:70px;
+    align-self:center;
+    border-radius:50%;
+    background-color:var(--base-color);
+    background-image:url("/pictures/avatar1.png");
+    position: relative;
+    background-size:cover;
+    transition:1s;
+    background-repeat:no-repeat;
+
+
+  }
+  .userProfile:hover{
+    zoom:1.2;
   }
 .menuButton{
     text-align:center;
@@ -92,7 +156,7 @@
     background-color:rgba(1,166,1,0.3);
     color:white;
     border:2px groove black;
-    transition:2s;
+    transition:var(--transition);
     position:absolute;
     z-index:300;
     justify-content:center;
@@ -120,7 +184,7 @@
     overflow: hidden;
   }
    
-.addDevice{
+.modDevice{
     width:100%;
     height:50px;
     color:white;
@@ -130,19 +194,29 @@
     align-items:center;
     line-height:100%;
     position:relative;
+    padding-top: 30px;
+    border-bottom: 1px solid white;
+    border-radius:10px;
+    cursor:pointer;
   }
    
+.modDevice:hover{
+    color: black;
+    background-color:rgba(255,255,255,0.7);
+
+}
 .option{
     width:80%;
     height:50px;padding-top: 3px;
     color:white;
     overflow-x:hidden;
-    background-color:rgba(0,0,0,0.2);
+    background-color:var(--base-color);
     text-align:center;
     left:10% ;
     line-height:100%;
     position:relative;
     cursor: pointer;
+    border-radius:10px;
   }
 .outcover{
     width:100%;
@@ -153,54 +227,57 @@
     position:relative;
     transition:2s;
   }
-.theForm{
-  width:50%;padding-top: 0%;top: 10%;
-  display: inline;height: 80%;
-  position:absolute;
-  height:aut0;
 
-}
 .theSubmit{
   width:50%;
   background-color: rgba(0,0,0,0.2);
-  height:80%;padding-top:0;
-  position:absolute;top: 10%;
+  height:80%;
+  padding-top:0;
+  position:absolute;
+  top: 10%;
   right: 0%;
   cursor: pointer;
 }
-.theFormValues{
-  width: 50%;left: 10%;
-  height:20px;padding-left: 10px;
-}
+
 #theButton{
-  width: 15%;
-  height: 15%;
+  width: 150px;
+  height: 70px;
+  border-radius: 5px;
   background-color: gray;
+  position: relative;
+  top :calc(100% - 75px) ;
+  left:calc((100% - 150px) / 2);
   cursor: pointer;
   
 }
-.devConfigForm{
-  position: relative;
-  width:60%;
-  height:fit-content;
-  border:1px groove black;
-  border-radius:5%;margin:auto;
-  background-color:rgba(255,255,255,0.7);
-  mix-blend-mode:normal;
-  box-shadow:inset 2px 4px 8px 2px black;
-  padding: 50px;
-  top:25%;
-  justify-items: center;    
-}
+
+
 .formShower{
   padding: 10px;
+  margin: 20px;
   width: 20px;
   position: absolute;
   height: 20px;
   background-color: rgba(0,0,0,0.2);
-  border: 2px solid rgba(0,0,0,1);
+  border: 2px solid white;
   cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
   color: aliceblue;
+}
+.slideSwitch{
+  padding: 10px;
+  margin: 20px;
+  width:fit-content;
+  position: relative;
+  height: 100px;
+  background-color: rgba(0,0,0,0.2);
+  border: 2px solid white;
+  left: 50px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
 }
 
 #configButton{
@@ -215,355 +292,138 @@
   border-radius: 5%;
 
 }
-.devConfigInput{
+.devConfigInput , select{
   position: absolute;
   background-color: rgba(255,255,255,0.7);
   left: 50%;
 }
 .optionbars{
-  background-color: beige;
-  color: black;
+  background-color: var(--sixth-color);
+  color: var(--base);
   border-radius: 15%;
-  border:1px solid black;
+  border:1px solid var(--base-color);
   cursor:pointer;
   text-align:center;
   line-height:50px;
   position:absolute;
 }
+
+
+.devFormContainer{
+  position: absolute;
+  width:60%;
+  height:fit-content;
+  min-height:300px;
+  border:3px solid var(--base);
+  border-radius:10px;
+  margin:auto;
+  background-color:var(--base-color);
+  box-shadow:inset 2px 4px 8px 2px black;
+  padding: 50px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  top:15vh;
+  left:20%;
+  min-width: 300px;
+  justify-items: center;
+  z-index: 100;
+  visibility: hidden;
+  display: block;
+}
+.devForm{
+  position:absolute;
+  width:60%;
+  top:20%;
+  left:20%;
+  padding:20px;
+  min-height:150px;
+  height:fit-content;
+  background-color: var(--base-color);
+  display:block;
+  
+  visibility:hidden;
+}
+.devForm input{
+  justify-self:top;
+  align-self:center;
+  float:right;
+  background-color:var(--fourth-color);
+  color:var(--base);
+  width:70%;
+  visibility: visible;
+  height: 20px;
+  align-self:top;
+  color:var(--base-color);
+  position:relative;
+  visibility: inherit;
+  
+}
+.devForm label{
+  color:var(--second-font-color);
+  left:0px;
+  width:20%;
+  padding:4px;
+  float:left;
+  height:fit-content;
+  justify-self:left;
+  /* border:3px solid black; */
+  position: relative;
+  /* background-color:#0000; */
+
+}
+
+.devcompnt{
+  width: 300px;
+  height: 100px;
+  background-color:var(--base-color) ;
+  position: relative;
+  justify-items: center;
+  border:3px solid black;
+  border-radius:10px;
+  align-self:center;
+  left: calc( 50% - 150px );
+  margin-top: 10px;
+  align-text:center;
+
+}
 </style>
 
 <body>
-    <div class="hidbar"></div>
-    <div class="topbar">
-        <h1><?php echo $userName;?> </h1> 
-        <div class="menuButton" onclick="menuEnable()"  id="button1" >+</div>
-        <div class="menuButton" onclick="menuDisable()"  id="button2" >x</div>
+  <div class="hidbar"></div>
+  <div class="topbar">
+    <div class="userProfile"></div>
+    <h1><?php echo $userName;?> </h1> 
+    <div class="menuButton" onclick="menuEnable();"  id="button1" >+</div>
+    <div class="menuButton" onclick="menuDisable();"  id="button2" >x</div>
+  </div>
 
-      </div>
-
-    <div class="leftbar" id="theLeftBar">
-      <div class="formShower" onclick = " leftibar.style = 'height:0%;';"">X</div>
-      <div id="configButton" onclick="createDevice()" class = "devConfigInput">Create Device</div> 
-
-      <form action="registerNew.php" method="get" class = "devConfigForm">
-        <label for="devName">Device Name :</label>
-        <input typeId="text" name="devName" class = "devConfigInput" id="forDevName">
-        <br>
-        <label for="devIndex">Device Index :</label>
-        <input typeId="number" min="0" name="devIndex" class = "devConfigInput" id="forIndex">
-        <br>
-        <label for="devIndex">Device Windows :</label>
-        <input typeId="number" min="1" max="3" name="devWindow" class = "devConfigInput" id="forWindow">
-        <br>
-        <label for="port">Device Id(important)</label>
-        <input typeId="text" name="port" id="forPort" class = "devConfigInput">
-        <br>
-        <label for="details">Details for Device :</label>
-        <input typeId="text" name="details" id="forDetails" class = "devConfigInput">
-        <br>
-        <label for="max">Max :</label>
-        <input typeId="text" name="max" id="forMax" class = "devConfigInput">
-        <br>
-        <label for="min">Min :</label>
-        <input typeId="text" name="min" id="forMin" class = "devConfigInput">
-        <br>
-        <label for="step">Step By :</label>
-        <input typeId="text" name="step" id="forstep" class = "devConfigInput">
-        <br>
-       
-
-
-      </form>
-    </div>
-   
-    <div class="rightbar" id="theRightBar">
-        <div class="addDevice">Add New Device</div>
-
-<?php 
-    
-    $devices = fopen("RegedDevices.txt", "r+") or die("Unable to open file!");
-    $device_Reg_eofline = false;
-    while(!$device_Reg_eofline){
-      $singline = fgets($devices);
-      if($singline == ""){
-        $device_Reg_eofline = true;
-        break;
-      }
-      else{
-        $arrline = explode("<>>",$singline);
-        echo "<div class=".$arrline[0]." id=".$arrline[1]."  onclick='displayForm(this)'>".$arrline[2]."</div>";
-      }
-    }
-?>
-    </div>
-    <div class="middlebar">
-    </div>
+  <div class="leftbar" id="theLeftBar">
+    <div class="formShower" onclick = "leftibar.style = 'height:0%;z-index:0;';" >X</div>
+  </div>
+  <div class="rightbar" id="theRightBar">
+    <div class="modDevice"  id= "addExistingDev" onclick="leftibar.style = 'height:80%;z-index:100;';">Add new device</div>
+    <div class= "modDevice" id = "createNewDev" onclick="createNewDevice()"> Create new device</div>
+  </div>
+  
+  <div class="middlebar">  
+  </div>
  
- <div class="bottombar">
-    <form class="theForm" id="theiForm" method="get" target="theSubmitter" action="/web/ComponentUpdate.php">
+  <div class="bottombar">
+  </div>
+  <div class="devFormContainer">
+    <form class="devForm" id="theiForm">
 
-        <input typeId="text" name="Val0" id="val0" class="theFormValues" value="0">
-        <input typeId="text" name="Val1" id="val1" class="theFormValues" value="0">
-        <input typeId="text" name="Val2" id="val2" class="theFormValues" value="0">
-        <input typeId="text" name="Val3" id="val3" class="theFormValues" value="0">
-        <input typeId="text" name="UserId" id="UserId" class="theFormValues" value="<?php echo $userId;?>">
-        <input typeId="text" name="Port" id="deviceId" class="theFormValues" value="0">
-        <button typeId="submit"  class="theFormValues" id="theButton">Submit</button>
     </form>
-    <iframe src="/Web/iframeTester.php" frameborder="0" class="theSubmit" name="theSubmitter"></iframe>
- </div>
+    <div id="configButton" onclick="createDevice()" class = "devConfigInput">Create Device</div>
+  </div>
 </body>
-<script src="BinarySwitch.js"></script>
-<script src="hidbar.js"></script>
-<script src="design.js"></script>
-
 <script>
- var lastSelectedDevice;
- var togcount    = 0;
- var devForm     = document.querySelector(".devConfigForm");
- var topibar     = document.querySelector(".topbar");
- var leftibar    = document.querySelector(".leftbar");
- var rightibar   = document.querySelector(".rightbar");
- var middleibar  = document.querySelector(".middlebar");
- var bottomibar  = document.querySelector(".bottombar");
- var menuEnablebutton  = document.querySelector("#button1");
- var menuDisablebutton = document.querySelector("#button2");
- var containers        = document.getElementsByClassName("container");  
- var thehomeLoader     = document.querySelector("#homeLoader"); 
- var devName    = document.querySelector("#forDevName");
- var devIndex   = document.querySelector("#forIndex");
- var devPort    = document.querySelector("#forPort");
- var devDetails = document.querySelector("#forDetails");
- var devMax   = document.querySelector("#forMax");
- var devMin   = document.querySelector("#forMin");
- var devStep  = document.querySelector("#forstep");
- var devWin   = document.querySelector("#forWindow");
-     menuDisablebutton.addEventListener("click",menuDisable);
-     menuEnablebutton.addEventListener("click",menuEnable);
-
-
-setTimeout(() => {menuDisable();},1000); 
- 
-<?php 
-while($eofile)
-{
-    $initstr=fgets($myfile);
-    if($initstr==""){$eofile = false ;continue;}
-    $thestr =trim($initstr,">");
-    $thestrarr = explode("/",$thestr);
-    if($thestrarr[1] == "ena"){
-      $theabout= "'".trim($thestrarr[7])."'";
-      $comm ="addObject($thestrarr[6],'".$thestrarr[5]."',typeIdToObject('".$thestrarr[5]."','".$thestrarr[4]."'),$theabout);";
-      echo  "setTimeout(() => {";  
-      echo $comm;
-      echo "},1000);";
-    }    
-}
-echo "     ";
-?>
-
-function addObject(port, name, deviceObject, about = "") {
-
-var theContainer = document.createElement("DIV");
-var dltButton = document.createElement("DIV");
-var theInContainer = document.createElement("DIV");
-theContainer.setAttribute("class", name);
-theInContainer.setAttribute("id", port);
-theInContainer.draggable = "true";
-dltButton.setAttribute("id", "deleteBtn");
-dltButton.innerHTML = optionsvg;
-theInContainer.style = "padding:5px;width:fit-content;height:fit-content;display:flex;color:blue;border:2px solid black;margin:5px;";
-dltButton.style = "float:right;top:0;left:calc(100%);width:50px;background-color:rgba(1,1,1,1);cursor:pointer;height:50px;text-align:center;line-height:50px;color:white;position:absolute;top:0;margin:1px; right:0px;";
-theContainer.style = "transition:2s;width:fit-content;height:fit-content;border:2px solid black;font-size:20px;position: relative;display:flex; ";
-dltButton.addEventListener("click", () => { options(dltButton); });
-theContainer.appendChild(theInContainer);
-theContainer.appendChild(dltButton);
-middleibar.appendChild(theContainer);
-var theLabel = document.createElement("LABEL");
-theLabel.htmlfor = '' + about;
-theLabel.innerText = '' + about + ':';
-theInContainer.appendChild(theLabel);
-theInContainer.appendChild(deviceObject);
-}
-
-function menuEnable(){
-  rightibar.style='width:10%;';
-  middleibar.style='width:90%;';
-  menuDisablebutton.style='bottom:-2px;';
-  menuEnablebutton.style='bottom:-500px;';
-}
-
-function menuDisable(){
-  rightibar.style='width:0;visibility:hidden;';
-  middleibar.style='width:100%;';
-  menuEnablebutton.style='bottom:-2px;';
-  menuDisablebutton.style='bottom:-500px;';
-}
-
-var formVal0 = document.getElementById("theiForm").elements.namedItem("Val0");
-var formVal1 = document.getElementById("theiForm").elements.namedItem("Val1");
-var formVal2 = document.getElementById("theiForm").elements.namedItem("Val2");
-var formVal3 = document.getElementById("theiForm").elements.namedItem("Val3");
-var theForm  = document.getElementById("theiForm");
-var formUId  = document.getElementById("theiForm").elements.namedItem("UserId");
-var formId   = document.getElementById("theiForm").elements.namedItem("Port");
-var optionsvg = "<svg height='50' width='50'><line x1='15' y1='15' x2='35' y2='15' style='stroke:rgb(255,255,255);stroke-width:2' /><line x1='15' y1='25' x2='35' y2='25' style='stroke:rgb(255,255,255);stroke-width:2' /><line x1='15' y1='35' x2='35' y2='35' style='stroke:rgb(255,255,255);stroke-width:2' /></svg>";
-var unoptionsvg = "<svg height='50' width='50'><line x1='15' y1='15' x2='35' y2='35' style='stroke:rgb(255,255,255);stroke-width:2' /><line x1='15' y1='35' x2='35' y2='15' style='stroke:rgb(255,255,255);stroke-width:2' /></svg>";
-    
-
-function upload1(val0){
-  formVal0.value = ''+val0;
-  formVal1.value = ''+0;
-  formVal2.value = ''+0;
-  formVal3.value = ''+0;
-  document.querySelector(".theForm").submit();
-}
-
-function upload2(val0,val1){
-  formVal0.value = ''+val0;
-  formVal1.value = ''+val1;
-  formVal2.value = ''+0;
-  formVal3.value = ''+0;
-  document.querySelector(".theForm").submit();
-
-}
-
-function upload3(val0,val1,val2){
-  formVal0.value = ''+val0;
-  formVal1.value = ''+val1;
-  formVal2.value = ''+val2;
-  formVal3.value = ''+0;
-  document.querySelector(".theForm").submit();
-}
-
-function upload4(val0,val1,val2,val3){
-  formVal0.value = ''+val0;
-  formVal1.value = ''+val1;
-  formVal2.value = ''+val2;
-  formVal3.value = ''+val3;
-  document.querySelector(".theForm").submit();
-}
-
-function uploadData(val0,val1,val2,val3){
-  formVal0.value = ''+val0;
-  formVal1.value = ''+val1;
-  formVal2.value = ''+val2;
-  formVal3.value = ''+val3;
-  document.querySelector(".theForm").submit();
-}
-
-function downloadData(userId,devId){
-  return null;
-  
-}
-
-function displayForm(typeIdob){
- let typeId = typeIdob.id;
- leftibar.style = "height:80%;";
- devName.value = typeIdob.name;
- switch(typeIdob.getAttribute("type")){
-  case "range": 
-    devMax.value = 255;
-    devMin.value = 0;
-    devStep.value = 1;
-    devIndex.value = 0;
-    devWin.value = 1;
-    break;
-
-  case "text":
-    devIndex.value = 2;
-    devWin.value = 1;
-    break ;
-  
- }
-
-
-}
-
-function typeIdToObject(name, devtypeId) {
-  if (devtypeId == 0) { return createBinSwitch(name); }
-  else if (devtypeId == 1) { return createVarSwitch(name); }
-  else if (devtypeId == 2) { return createJustValue(name); }
-  else if (devtypeId == 3) { return createMaptracker(name); }
-  else { return none; }
-}
-
-function createDevice() {
-  addObject(devPort.value, devName.value, typeIdToObject(devName.value, devtypeId.value), devDetails.value);
-}
-
-var isoptiontabopen = false;
-
-function options(obj) {
-  let optiontab = document.createElement("DIV");
-  optiontab.setAttribute("class", "optionbars");
-  optiontab.style = "width:300px;height:300px;top:calc(50vh-50px);left:calc(50vw - 150px);margin:1px;visibility:visible;";
-  optiontab.style.transition = "2s";
-  let thisObject = obj;
-  let thisparent = obj.parentElement;
-  let thischild = obj.childElements;
-  switch (obj.parentElement.lastElementChild.className == "optionbars") {
-    case false:
-      isoptiontabopen = !(false && isoptiontabopen);
-      obj.innerHTML = unoptionsvg;
-      obj.parentElement.appendChild(optiontab);
-      addOptions(optiontab);
-      break;
-    case true:
-      isoptiontabopen = !(true && isoptiontabopen);
-      obj.innerHTML = optionsvg;
-      obj.parentElement.lastElementChild.remove();
-      break;
-  }
-}
-
-function createBinSwitch(name) {
-  let theInput = document.createElement("INPUT");
-  theInput.setAttribute("type", "range");
-  theInput.style.cursor = "pointer";
-  theInput.name = name;
-  theInput.min = "0";
-  theInput.max = "1";
-  theInput.step = "1";
-  theInput.addEventListener("change", () => {lastSelectedDevice = '' + (theInput.parentElement).id; formId.value = lastSelectedDevice; upload1(theInput.value); });
-  return theInput; 
- 
-}
-function createVarSwitch(name) {
-  let theInput = document.createElement("INPUT");
-  theInput.setAttribute("type", "range");
-  theInput.name = name;
-  theInput.min = "1";
-  theInput.max = "256";
-  theInput.step = "1";
-  theInput.addEventListener("change", () => { lastSelectedDevice = '' + (theInput.parentElement).id; formId.value = lastSelectedDevice; upload1(theInput.value); });
-  return theInput;
-}
-
-function createJustValue(name) {
-  let theInput = document.createElement("INPUT");
-  theInput.setAttribute("type", "text");
-  theInput.name = name;
-  theInput.addEventListener("change", () => { lastSelectedDevice = '' + (theInput.parentElement).id; formId.value = lastSelectedDevice; upload1(theInput.value); });
-  return theInput;
-}
-
-function createMaptracker(name) {
-  let newElement = document.createElement("IFRAME");
-  let mapSpacestyle = " min-width:100px;max-width:80%;min-height:150px;max-height:10%;background:white;border:3px solid black; ";
-  newElement.style= mapSpacestyle;
-  newElement.setAttribute("src", "www.googlemap.com");
-  newElement.setAttribute("name", name);
-  let thisdevId = newElement.parentElement.id;
-  // let dataList = {"","","",""};
-  newElement.addEventListener("hover", () => { setInterval(100, () => { dataList = downloadData( userId, thisdevId) }); });
-
-
-}
+ var userId = "<?php echo $userId;?>";
 
 </script>
-</html>
+<script src="/Web/hidbar.js"></script>
+<script src="/Web/themes.js"></script>
+<script src="/Web/devices.js"></script>
+<script src="/Web/design.js"></script>
 
-<?php 
-fclose($myfile);
-?>
+</html>

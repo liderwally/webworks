@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Web/variables.css">
     <title>Registry</title>
 </head>
 <?php
@@ -24,41 +25,52 @@ else{
 <style>
     *{
         transition:2s;
+        color: white;
+
     }
  body{
     background:white;
     width:100vw;
     height:100vh;
     padding:auto;
-    background-image:url("/pictures/nature1.jpg"); 
+    /* background-image:url("/pictures/nature1.jpg"); 
     background-size:cover;
-    background-repeat:no-repeat;
+    background-repeat:no-repeat; */
     color:white;
+    background: var(--base-color);
+    background-size:cover;
+    width:99%;
+    height:100vh;
+    background-repeat:no-repeat;
  }
  .container{
     width: 400px;
     height:fit-content;
     padding:20px;
     /* padding-bottom:20px; */
-    box-shadow:2px 4px 8px 2px black;
-    background-color:rgba(0,0,0,0.4);
+    /* background-image:url("/pictures/nature1.jpg");  */
+    background-size:cover;
+    background-repeat:no-repeat;
+    box-shadow:1px 1px 1px 2px black;
+    background-color:rgba(0,0,0,0.2);
     top:calc(50vh - 300px);
     left:calc(50vw - 250px);
     position: relative;
-    border-radius:5%;
-    border:1px groove black;
+    border-radius:20px;
     margin-top:50px;
+     border:6px outset gray;
  }
  form{
     position: relative;
     width:60%;
+    border:4px inset gray;
     height:fit-content;
-    border:1px groove black;
     border-radius:5%;margin:auto;
-    background-color:rgba(255,255,255,0.2);
+    background-color:rgba(0,0,0,0.4);
     mix-blend-mode:normal;
-    box-shadow:inset 2px 4px 8px 2px black;
+    box-shadow:inset 1px 1px 1px 2px black;
     padding: 10px;
+    backdrop-filter: blur(8px);-webkit-backdrop-filter: blur(8px);
 
  }
 input{
@@ -66,15 +78,15 @@ input{
     width:60%;
     height:30px;
     position: relative;
-    background-color:rgba(0,0,0,1);
+    background-color:rgba(0,0,0,0.1);
     color:white;
     margin-top:1% ;
-    mix-blend-mode:darken;
+    /* mix-blend-mode:darken; */
     border-top:none;
     border-left:none;
     border-right:none;
-    border-bottom:2px dotted white;
-    border-radius:5%;
+    border-bottom:2px groove white;
+    border-radius:5px;
     box-shadow:3px 5px 8px 1px black;
     margin-bottom:10px ;
     
@@ -86,28 +98,33 @@ input{
     border-top:none;border-left:none;border-right:none;
 }
 #forSubmit{
-    border:2px outset grey;
-    border-radius:5%;
+    border:2px outset white;
+    border-radius:10px;
     bottom:-5%;
     left:20%;
     margin-top:30px;
     margin-bottom:10px;
-    background-color:rgba(200,200,200,0.8);
-    color:black;
+    background-color:rgba(0,0,0,0.2);
+    mix-blend-mode:darken;
+    color:white;
     cursor: pointer;
 }
 #toRegister{
-    bottom:-30px;
-    right:33%;
+    bottom:-80px;
+    width:200px;
+    left: calc(50% - 120px);
+    border-radius: 15px;
+    padding: 20px;
+    border: 2px ridge black; 
     position:absolute;
-    color:black;
+    border:2px outset gray;
     font-weight:bold;
 }
 label{
-    font-size:15px;left:10px;position:relative;color:black;
+    font-size:15px;left:10px;position:relative;color:rgba(234,234,234);
 }
-input :focus{
-    color:blue;
+input :hover{
+    border-bottom:2px groove red;
 }
 .warnings{
     bottom:-60px;
@@ -118,10 +135,20 @@ input :focus{
     height: 0px;
     width: 500px;
 }
+
+.tableLabel{
+    justify-self:center;
+    left:50%;
+    position: relative;
+    color:gray;
+    text-align:white;
+}
+
 </style>
 <body>
     <div class="hidbar"></div>
     <div class="container">
+        <h3 class="tableLabel"></h3>
         <form action = "" method="post" id="theForm">
             <div class="dueName">
             <br>
@@ -163,7 +190,9 @@ input :focus{
     </form>
     <iframe name="t-iframe" id="UserIframe" src="userChecker.php" style="top: 70px;height: 75px;width: 300px;position:relative;border:none;overflow-y:hidden;" frameborder="0"></iframe>
 </body>
+
 <script src="hidbar.js"></script>
+<script src="/Web/themes.js"></script>
 <script>
     var regCount=0;
     var theChanger = document.querySelector("#toRegister");
@@ -180,13 +209,15 @@ input :focus{
     var checkerForm = document.querySelector("#UserCheckerForm");
     var checkerInput = document.querySelector("#UserNameTester");
     var userIframe = document.querySelector("#UserIframe");
+    var tableLabel = document.querySelector(".tableLabel");
     userNameInput.addEventListener("change",checkUserName);
-
+    
     const key = formWizard(regCount);
 
     function formWizard(theVals) {
         if(theVals==1){
             //alert(theVals);
+            tableLabel.innerText = "Register";
             theChanger.innerHTML="I already have an account...";
             confirmTab.style="display:block;";
             nameTab.style="display:block;";
@@ -198,6 +229,7 @@ input :focus{
         }
         else{
             //alert(theVals);
+            tableLabel.innerText = "Login";
             theChanger.innerHTML="I don't have an account...";
             confirmTab.style="display:none;";
             nameTab.style="display:none;";
