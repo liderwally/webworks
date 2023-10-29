@@ -33,21 +33,26 @@ themediv.style.borderRadius = "50%";
 logdiv.style.borderRadius = "10px";
 helpdiv.style.borderRadius = "10px";
 bigdiv.style.borderRadius = "10px";
-
 themediv.style.width = "20px";
+
 thebody.appendChild(bigdiv);
 thebody.appendChild(helpdiv);
 thebody.appendChild(logdiv);
 thebody.appendChild(themediv);
 
 
-thebody.style = bodycss0 + "position: absolute; top: -10px;";
-thebody.addEventListener("click", () => { playbigdiv(); });
+thebody.style = bodycss0 + "display:fixed;position: absolute; top: -10px;";
+thebody.addEventListener("click", () => { playbigdiv();displayer == true;setTimeout(() => {unplaybigdiv();displayer == false;}, 5000);});
 bigdiv.addEventListener("click", () => { window.location.href = "/Web/Home.php"; });
 logdiv.addEventListener("click", () => { window.location.href = "/Web/login.php"; });
 helpdiv.addEventListener("click", () => { window.location.href = "/Web/Help.php"; });
 
-//thedivs.addEventListener("mouseover",()=>{alert(this.class)});
+thebody.addEventListener("mouseover",()=>{
+    if(displayer == true){
+        playbigdiv();
+    }
+}
+    );
 setInterval(bgchange, 400);
 playbigdiv();
 
@@ -92,7 +97,7 @@ function playbigdiv() {
     logdiv.style.left = "calc(50vw - " + divwidth / 2 + "px - " + divspacing + "px)";
     helpdiv.style.left = "calc(50vw - " + divwidth / 2 + "px + " + divspacing + "px)";
     themediv.style.left = "calc(50vw - " + divspacing * 2 + "px)";
-    setTimeout(() => {unplaybigdiv();displayer == false;}, 5000);
+    
 }
 
 function unplaybigdiv() {

@@ -200,7 +200,7 @@ function createDevice() {
     thisnameInput = devForm.children.namedItem("nameInput").value;
   }
   if (devForm.children.namedItem("detailsInput") != null) {
-    variables.push(devForm.children.namedItem("detailsInput").value);
+    variables.push("'" + devForm.children.namedItem("detailsInput").value + "'");
   }
   if (devForm.children.namedItem("idInput") != null) {
     variables.push(devForm.children.namedItem("idInput").value);

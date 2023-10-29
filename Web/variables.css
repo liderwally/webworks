@@ -1,24 +1,18 @@
 :root {
 
 
-
-
   /******************  colors  ***************************/
 
+  /* basic colors */
 
-
-
-/* basic colors */
- 
-  --base: #000000;
-  --base-color:  #004D73;
+  --base-color: #004D73;
   --first-color: #ffffff;
-  --second-color: #444fb3;  /*  #c6d3a3;*/
+  --second-color: #444fb3;
   --third-color: #FF8C00;
   --fourth-color: #C0C0C0;
   --fifth-color: #3700b3;
   --sixth-color: beige;
-  --base: #000;
+
 
   /* font colors */
 
@@ -29,9 +23,13 @@
   --fourth-font-color: ;
 
 
+  /*** border colors **/
 
+  --base-border-color: #03dac6;
+  --first-border-color: #fff;
+  --second-border-color: #3700b3;
 
-  /* random styles */
+  /*++++++++++++++++++++++++++++++++++++ random styles ++++++++++++++++++++++++++++++++++++*/
 
   --background-color: var(--my-base);
   --border-radius: .25rem;
@@ -42,7 +40,7 @@
   --hover-scale: 1.2;
   --focus-outline: rgba(66, 153, 225, .5) !important;
 
-  /* random data */
+  /*+++++++++++++++++++++++++ random data ++++++++++++++++++++++++++++++++++*/
 
   --integer-0: 0;
   --integer-1: 0;
