@@ -19,25 +19,12 @@ if ($_GET) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Web/variables.css" type="text/css">
+    <link rel="stylesheet" href="/Web/general.css">
     <!-- <link rel="stylesheet" href="./design.css" type ="text/css"> -->
     <title>Control Panel</title>
   </head>
 
   <style>
-    body {
-      width: 100vw;
-      height: 100vh;
-      display: block;
-      padding: 5px;
-      margin: 0px;
-      overflow-x: hidden;
-      overflow-y: hidden;
-      /* background-image:url("/pictures/iot 2.jpeg");  */
-      /* background-size:cover;  */
-      /* background-color: black; */
-      background: var(--my-base);
-    }
-
     .topbar {
       position: absolute;
       width: calc(100% - 35px);
@@ -48,28 +35,28 @@ if ($_GET) {
       padding-left: 20px;
       height: 10vh;
       z-index: 2;
-      background-color: var(--base-color);
+      background-color: var(--first-color);
       color: var(--base-font-color);
       /*#2288ff; c6d3a3;*/
       display: flex;
       border-radius: 10px;
-      border: 1px solid var(--fifth-color);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--third-color);
+      backdrop-filter: blur(8px) sepia(5px);
+      -webkit-backdrop-filter: blur(8px) sepia(5px);
     }
 
     .rightbar {
       border-radius: 10px;
       top: calc(10% + 20px);
       z-index: 2;
-      top-margin: 0px;
-      border: 1px solid var(--fifth-color);
+      margin-top: 0px;
+      border: 1px solid var(--third-color);
       border-radius: 10px;
       width: 10%;
       height: calc(100vh - 10% - 20px);
       right: -10px;
-      color: var(--base-font-color);
-      background-color: var(--base-color);
+      color: var(--first-font-color);
+      background-color: var(--first-color);
       display: flex;
       position: absolute;
       transition: 1s;
@@ -84,14 +71,13 @@ if ($_GET) {
       width: 90%;
       height: 0%;
       transition: 1s;
-      border: 1px solid var(--fifth-color);
+      border: 1px solid var(--third-color);
       border-radius: 10px;
-      background-color: var(--base-color);
-      color: var(--base-font-color);
-      display: flex;
+      background-color: var(--first-color);
+      color: var(--first-font-color);
       position: absolute;
       transition: 2s;
-      display: block;
+      display: table-column;
       overflow-y: hidden;
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
@@ -109,20 +95,20 @@ if ($_GET) {
       margin-top: 20px;
       padding: 10px;
       border-radius: 10px;
-      background-color: var(--base-color);
+      background-color: var(--first-color);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
       position: absolute;
       transition: 1s;
-      display: block;
-
+      display: flex;
+      /* flex-direction: column; */
       /* column-width:30%;
     column-count:2; */
       /* column-rule: 1px solid lightblue; */
       flex-direction: row;
       overflow-x: hidden;
       overflow-y: clip;
-      border: 1px solid var(--fifth-color);
+      border: 1px solid var(--third-color);
     }
 
     .bottombar {
@@ -137,9 +123,9 @@ if ($_GET) {
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
       position: absolute;
-      background-color: var(--base-color);
+      background-color: var(--first-color);
       color: var(--base-font-color);
-      border: 1px solid var(--fifth-color);
+      border: 1px solid var(--third-color);
     }
 
     .userProfile {
@@ -147,7 +133,7 @@ if ($_GET) {
       height: 70px;
       align-self: center;
       border-radius: 50%;
-      background-color: var(--base-color);
+      background-color: var(--fisrt-color);
       background-image: url("/pictures/avatar1.png");
       position: relative;
       background-size: cover;
@@ -202,7 +188,7 @@ if ($_GET) {
       height: 50px;
       color: white;
       overflow-x: hidden;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: var(--second-color);
       text-align: center;
       align-items: center;
       line-height: 100%;
@@ -301,6 +287,8 @@ if ($_GET) {
       justify-self: center;
       position: absolute;
       width: auto;
+      background-color: var(--base-color);
+      border: 1px solid var(--fifth-color);
       padding: 10px;
       left: 50%;
       bottom: 10%;
@@ -334,14 +322,14 @@ if ($_GET) {
       width: 60%;
       height: fit-content;
       min-height: 300px;
-      border: 3px solid var(--base);
+      border: 3px solid var(--fifth-color);
       border-radius: 10px;
       margin: auto;
       background-color: var(--base-color);
       box-shadow: inset 2px 4px 8px 2px black;
       padding: 50px;
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       top: 15vh;
       left: 20%;
       min-width: 300px;
@@ -370,7 +358,7 @@ if ($_GET) {
       align-self: center;
       float: right;
       background-color: var(--fourth-color);
-      color: var(--base);
+      color: white;
       width: 70%;
       visibility: visible;
       height: 20px;
@@ -382,23 +370,23 @@ if ($_GET) {
     }
 
     .devForm label {
-      color: var(--second-font-color);
+      color: red;
       left: 0px;
       width: 20%;
       padding: 4px;
       float: left;
       height: fit-content;
       justify-self: left;
-      /* border:3px solid black; */
       position: relative;
-      /* background-color:#0000; */
+
 
     }
 
     .devcompnt {
-      width: 300px;
-      height: 100px;
-      background-color: var(--base-color);
+      width: fit-content;
+      padding: 10px;
+      height: 30px;
+      background-color: var(--fifth-color);
       position: relative;
       justify-items: center;
       border: 3px solid black;
@@ -406,13 +394,17 @@ if ($_GET) {
       align-self: center;
       left: calc(50% - 150px);
       margin-top: 10px;
-      align-text: center;
+      text-align: center;
+      color: var(--base-color);
 
     }
   </style>
 
   <body>
     <div class="hidbar"></div>
+    <div class="backpage">
+            <canvas class="canvas"></canvas>
+    </div>
     <div class="topbar">
       <div class="userProfile"></div>
       <h1>
@@ -449,6 +441,7 @@ if ($_GET) {
   </script>
   <script src="/Web/hidbar.js"></script>
   <script src="/Web/themes.js"></script>
+  <script src="/Web/liotsbg3.js"></script>
   <script src="/Web/devices.js"></script>
   <script src="/Web/design.js"></script>
 

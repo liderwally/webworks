@@ -1,5 +1,6 @@
 
 var lastSelectedDevice;
+var userDevices = Array();
 var lastMethodCall;
 var togcount = 0;
 var devFormContainer = document.querySelector('.devFormContainer');
@@ -220,12 +221,14 @@ function createDevice() {
   let varstring = variables.join(", ");
   let functString = "" + lastMethodCall + "('" + thisnameInput + "'," + varstring + ");";
   console.log(functString);
+  
   devForm.innerHTML = null;
 
   setTimeout(() => {
     devFormContainer.style.visibility = "hidden";
     devForm.style.visibility = "hidden";
     let develmnt = eval(functString);
+    userDevices.push(functString);
     addObject(develmnt);
   }, 1000);
 }
@@ -244,7 +247,7 @@ function newposition() {
   console.log(clientX);
   lastdragX = clientX;
   lastdragY = clientY;
-  console.log(clientY)
+  console.log(clientY);
   newbar.style.top = "" + (lastdragY) + "px";
   newbar.style.left = "" + (lastdragX) + "px";
   newbar.innerHTML = "X" + lastdragX + "<br>Y" + lastdragY;

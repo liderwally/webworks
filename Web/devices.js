@@ -111,10 +111,10 @@ publicDevices.push(thisdescriptor);
 
 function createBinSwitch(name, id) {
   let incontainer = document.createElement("DIV");
-  incontainer.style = "min-width: 300px;width: 30%;height: 100px;left: 20%;padding: 10px;margin:10px;display: flex;border: 2px dashed white;";
+  incontainer.style = "min-width: 100px;width:fit-content;height: 100px;left: 20%;padding: 10px;margin:10px;background-color:var(--second-color);display: flex;border: 2px solid var(--fourth-color);";
   var theswitch = new binary(id = id, name = name, windows = 1).slideSwitch();
   let label = document.createElement("P");
-  label.style = "float:right;width: 20%;height:100% ;padding: 10px;align-items: center;";
+  label.style = "float:right;width:fit-content;height:100% ;padding: 10px;align-items: center;";
   label.innerText = name;
   incontainer.className = "inContainer";
   incontainer.appendChild(label);
@@ -136,13 +136,12 @@ function createHSlider(name, id, min, max, steps) {
   node.innerText = "0";
   incontainer.setAttribute("class", "inContainer");
   label.style = "width: 20%;height:100% ;padding: 10px;align-items: center;";
-  incontainer.style = "min-width: 300px;width: 30%;height: 100px;left: 20%;padding: 10px;margin:10px;display: flex;border: 2px dashed white;";
+  incontainer.style = "min-width: 300px;width: fit-content;height: 100px;left: 20%;padding: 10px;margin:10px;background-color:var(--second-color);display: flex;border: 2px solid var(--fourth-color);";
   node.style = "float:left;width: 20%;height:100% ;padding-top: 6%;margin-left:6%;align-items: center;";
   label.innerText = name;
   incontainer.appendChild(label);
   incontainer.appendChild(slider);
   incontainer.appendChild(node);
-  alert("returning the sliderH object");
   return incontainer;
 }
 
@@ -151,7 +150,10 @@ publicDevices.push(thisdescriptor);
 
 function createJustValue(name, id) {
   let incontainer = document.createElement("DIV");
-  incontainer.style = "min-width: 300px;width: 30%;height: 100px;left: 20%;padding: 10px;margin:10px;display: flex;border: 2px dashed white;";
+  let label = document.createElement("P");
+  label.style = "width: 20%;height:100% ;padding: 10px;align-items: center;";
+  label.innerText = name;
+  incontainer.style = "min-width: 200px;width: 30%;height:fit-content;left: 20%;padding: 10px;margin:10px;background-color:var(--second-color);display: flex;border: 2px solid var(--fourth-color);";
   let y = new variable(id = id, name = name, windows = 1);
   incontainer.className = "textField";
   incontainer.id = id;
@@ -162,14 +164,14 @@ function createJustValue(name, id) {
 
 function createMaptracker(name) {
   let incontainer = document.createElement("DIV");
-  incontainer.style = "min-width: 300px;width: 30%;height: 100px;left: 20%;padding: 10px;margin:10px;display: flex;border: 2px dashed white;";
+  incontainer.style = "min-width: 300px;width: 30%;height: 100px;left: 20%;padding: 10px;margin:10px;background-color:var(--second-color);display: flex;border: 2px solid var(--fourth-color);";
   let newElement = document.createElement("IFRAME");
   let mapSpacestyle = " min-width: 100px;max-width: 80%;min-height: 150px;max-height: 10%;width: 200px;height: 100px;background: white;border: 3px solid black; ";
   newElement.style = mapSpacestyle;
   newElement.setAttribute("src", "www.googlemap.com");
   newElement.setAttribute("name", name);
   let thisdevId = newElement.parentElement.id;
-  // let dataList = {"","","",""};
+
   newElement.addEventListener("hover", () => { newElement.style.transform = "scale(1.3)"; });
 
 }
@@ -182,13 +184,11 @@ function createButton(name, details, id) {
   let button = new binary(id = id, name = name, windows = 1).latchedButton();
   let container = document.createElement("DIV");
   let label = document.createElement("P");
-
   container.setAttribute("class", "inContainer");
   container.setAttribute("id", id);
   container.setAttribute("details", details);
-
-  label.style = "width: fit-content;height:100% ;padding: 10px;align-items: center;";
-  container.style = "min-width: 300px;width: 30%;height: fit-content;left: 20%;padding: 20px;margin:20px;display:flex;border: 2px dashed white;";
+  label.style = "min-width: 50px;width: fit-content;height: 100%;padding: 10px;padding-left: 20px;position: relative;align-items: center;";
+  container.style = "min-width: 100px;width: fit-content;height: fit-content;left: 20%;padding: 5px;margin:10px;display:flex;border: 2px solid var(--fourth-color);";
   label.innerText = name;
   container.appendChild(label);
   container.appendChild(button);
@@ -200,9 +200,9 @@ function createButton(name, details, id) {
 
 /*
 **********************************************************************************************************************************************
- **********************************                                            ***************************************************************
- **********************************   BEGINING OF DEVICES DEFINITION(CLASSES)  ***************************************************************
- **********************************                                            ***************************************************************
+ ***********************************                                            ***************************************************************
+ **********************************   BEGINING OF DEVICES DEFINITION(CLASSES)     ***********************************************************
+ ***********************************                                            ***************************************************************
 **********************************************************************************************************************************************
 */
 
@@ -246,8 +246,8 @@ class binary {
     outCover.setAttribute("class", "outcover");
     outCover.setAttribute("id", this.id);
     outCover.setAttribute("name", this.name);
-    let incoStyle = "width:70%;height:70%;top:15%;left:15%;background-color:red;border-radius:50%;transition:0.3s linear;position:relative;border: 2px ridge #0008;box-shadow: inset 2px 4px 3px 5px #000;text-align:center;line-height:35px;";
-    let outcoStyle = "width:100px;height:100px;background-color:grey;display:block;position: relative;transition:.8s;border: 4px ridge #fff8;margin:10px;padding:10px;";
+    let incoStyle = "width:100%;height:100%;background-color:red;top:0;left:0;border-radius:50%;transition:0.3s linear;position:relative;box-shadow: inset 2px 4px 3px 5px #000;text-align:center;line-height:35px;";
+    let outcoStyle = "width:70px;height:70px;border-radius:50%;background-color:grey;display:block;position: relative;transition:.8s;";
     outCover.style = outcoStyle;
     inCover.style = incoStyle;
     outCover.appendChild(inCover);
@@ -266,6 +266,7 @@ class variable {
   textField(name) {
     let theInput = document.createElement("INPUT");
     theInput.setAttribute("type", "text");
+    theInput.style = "width:100px;height:25px;float: right;";
     theInput.name = name;
     theInput.addEventListener("change", () => { lastSelectedDevice = '' + (theInput.parentElement).id; formId = lastSelectedDevice; upload1(theInput); });
     return theInput;
@@ -436,10 +437,10 @@ function addObject(device) {
   theInContainer.draggable = "true";
   dltButton.setAttribute("id", "deleteBtn");
   dltButton.innerHTML = optionsvg;
-  dltButton.style = "float:right;transition:0.5s ease-in;left:calc(100% + 10px);background-color:var(--base-color);cursor:pointer;height:calc(100%);text-align:center;line-height:50px;color:white;position:absolute;top:0;margin:1px;border: 1px solid gray;border-radius:5px;right:0px;";
+  dltButton.style = "float:right;transition:0.5s ease-in;left:calc(100% + 10px);background-color:var(--base-color);cursor:pointer;height:calc(100%);text-align:center;line-height:50px;color:var(--third-color);position:absolute;top:0;margin:1px;border: 1px solid gray;border-radius:5px;right:0px;";
   dltButton.style.height = '50px';
   dltButton.style.width = "50px";
-  devContainer.style = "transition:2s;min-width:50px;width:fit-content;height:fit-content;border:1px solid gray;border-radius:5px; padding:5px;margin:10px;font-size:20px;position: relative;display:flex; ";
+  devContainer.style = "transition:2s;min-width:50px;width:fit-content;height:fit-content;background-color:var(--third-color);border:1px solid var(--fourth-color);border-radius:5px; padding:5px;margin:10px;font-size:20px;position: relative;display:flex; ";
   dltButton.addEventListener("click", options);
   devContainer.appendChild(theInContainer);
   devContainer.appendChild(dltButton);

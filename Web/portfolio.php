@@ -2,17 +2,9 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #f1f1f1;
-  padding: 20px;
-  font-family: Arial;
-}
-
 /* Center website */
 .main {
   max-width: 1000px;
@@ -51,6 +43,7 @@ h1 {
 .content {
   background-color: white;
   padding: 10px;
+  width: 100%;
 }
 
 /* Responsive layout - makes a two column-layout instead of four columns */
