@@ -101,7 +101,8 @@ if ($_GET) {
       position: absolute;
       transition: 1s;
       display: flex;
-      /* flex-direction: column; */
+      flex-direction: column; 
+      flex-wrap: wrap;
       /* column-width:30%;
     column-count:2; */
       /* column-rule: 1px solid lightblue; */

@@ -44,27 +44,27 @@ if (mysqli_query($conn, $sqla)) {
         <title>Login page</title>
     </head>
     <style>
+        body{
+            display: grid;
+            width: 100vw;
+            height:100vh;
+        }
         .whole {
-
-            top: calc(50vh - 75px);
-            left: calc(50vw - 250px);
-            height: 220px;
-            max-width: 450px;
-            background-color: #c6d3a3;
-            /*#b6a85b;/*#b6b68c;*/
+            width: fit-content;
+            height: 50%;
+            max-width 500px;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             align-items: center;
-            /* background-color:rgba(0,0,0,1); */
-            display: flex;
+            justify-self: center;
+            align-self: center;
             position: relative;
-            line-height: 100%;
-            border: 0.5px groove black;
-            border-top-left-radius: 10px;
+            border: 2px groove var(--third-color);
+            border-top-left-radius: 100px 100px;
             border-bottom-left-radius: 10px;
             border-top-right-radius: 100px 100px;
-            border-bottom-right-radius: 100px 100px;
-            opacity:
-                <?php echo $theTerminator; ?>
-            ;
+            border-bottom-right-radius: 10px;
             flex-wrap: wrap;
             align-content: center;
             font-size: 25px;
@@ -73,29 +73,44 @@ if (mysqli_query($conn, $sqla)) {
         .avatarImg {
             border-radius: 45%;
             background-image: url("/pictures/avatar1.png");
-            left: calc(100% - 210px);
+            left: calc(50% - 105px);
+            top: -105px;
             background-size: cover;
             background-repeat: no-repeat;
             box-shadow: 3px 5px 8px 1px black;
             position: absolute;
-            top: 10px;
             width: 200px;
             height: 200px;
         }
 
+        .inforow {
+            position: relative;
+            height: 60%;
+            top: 30%;
+            justify-self: center;
+            justify-items: center;
+            justify-content: center;
+            width: fit-content;
+            color: var(--third-color);
+            border-radius: 5%;
+            display: grid;
+            overflow-y: hidden;
+        }
+
         .infotab {
             position: relative;
-            height: 30px;
-            bottom: 1px;
-            text-align: left;
+            height: fit-content;
+            text-align: center;
             justify-self: center;
-            width: 200px;
-            left: 10px;
-            background-color: rgba(0, 0, 0, 0);
-            color: black;
-            border: 0 0 2px 0;
-            border-radius: 5%;
-            overflow: hidden;
+            align-self: center;
+            align-items: center;
+            width: fit-content;
+            max-width: 450px;
+            padding: 5px;
+            margin: 10px;
+            border: 2px solid var(--third-color);
+            color: var(--third-color);
+            border-radius: 20px;
 
         }
 
@@ -103,8 +118,10 @@ if (mysqli_query($conn, $sqla)) {
             left: calc(50% - 75px);
             width: fit-content;
             border: 2px brown black;
+            color: var(--third-color);
+            background-color: var(--first-color);
             top: calc(100% + 50px);
-            bottom: 20px;
+            bottom: 10px;
             padding: 10px;
             border-radius: 5px;
             height: fit-content;
@@ -124,19 +141,24 @@ if (mysqli_query($conn, $sqla)) {
         <div class="backpage">
             <canvas class="canvas"></canvas>
         </div>
+
+
         <div class="whole">
             <div class="avatarImg"></div>
             <br>
-            <div class="infotab" id="">
-                <?php echo $theName; ?>
-            </div>
-            <br>
-            <div class="infotab" name="Email" id="">
-                <?php echo $_POST["userEmail"]; ?>
-            </div>
-            <br>
-            <div class="infotab" name="ID" id="">
-                <?php echo $theId; ?>
+            <div class="inforow">
+                <hr>
+
+                <div class="infotab" id="">
+                    <?php echo $theName; ?>
+                </div>
+                <div class="infotab" name="Email" id="">
+                    <?php echo $_POST["userEmail"]; ?>
+                </div>
+                <div class="infotab" name="ID" id="">
+                    <?php echo $theId; ?>
+                </div>
+                <br>
             </div>
             <br>
             <button id="theButton">go to the dashboard...</button>

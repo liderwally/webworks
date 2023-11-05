@@ -151,12 +151,13 @@ publicDevices.push(thisdescriptor);
 function createJustValue(name, id) {
   let incontainer = document.createElement("DIV");
   let label = document.createElement("P");
-  label.style = "width: 20%;height:100% ;padding: 10px;align-items: center;";
+  label.style = "width: 20%;height:100% ;padding: 10px;align-items: center;color:var(--third-color);";
   label.innerText = name;
   incontainer.style = "min-width: 200px;width: 30%;height:fit-content;left: 20%;padding: 10px;margin:10px;background-color:var(--second-color);display: flex;border: 2px solid var(--fourth-color);";
   let y = new variable(id = id, name = name, windows = 1);
   incontainer.className = "textField";
   incontainer.id = id;
+  incontainer.appendChild(label);
   incontainer.appendChild(y.textField(name));
   return incontainer;
 }
@@ -266,7 +267,7 @@ class variable {
   textField(name) {
     let theInput = document.createElement("INPUT");
     theInput.setAttribute("type", "text");
-    theInput.style = "width:100px;height:25px;float: right;";
+    theInput.style = "color:black;width:100px;height:25px;float: right;";
     theInput.name = name;
     theInput.addEventListener("change", () => { lastSelectedDevice = '' + (theInput.parentElement).id; formId = lastSelectedDevice; upload1(theInput); });
     return theInput;
@@ -437,10 +438,10 @@ function addObject(device) {
   theInContainer.draggable = "true";
   dltButton.setAttribute("id", "deleteBtn");
   dltButton.innerHTML = optionsvg;
-  dltButton.style = "float:right;transition:0.5s ease-in;left:calc(100% + 10px);background-color:var(--base-color);cursor:pointer;height:calc(100%);text-align:center;line-height:50px;color:var(--third-color);position:absolute;top:0;margin:1px;border: 1px solid gray;border-radius:5px;right:0px;";
+  dltButton.style = "float:right;transition:0.5s ease-in;left:calc(100% + 10px);background-color:var(--base-color);cursor:pointer;height:calc(100%);text-align:center;line-height:50px;color:var(--third-color);position:absolute;top:0;margin:1px;border: 1px solid gray;border-radius:5px;right:0px;z-index:100";
   dltButton.style.height = '50px';
   dltButton.style.width = "50px";
-  devContainer.style = "transition:2s;min-width:50px;width:fit-content;height:fit-content;background-color:var(--third-color);border:1px solid var(--fourth-color);border-radius:5px; padding:5px;margin:10px;font-size:20px;position: relative;display:flex; ";
+  devContainer.style = "transition:2s;min-width:50px;width:fit-content;height:fit-content;background-color:var(--third-color);border:1px solid var(--fourth-color);border-radius:5px; padding:5px;margin:10px;margin-right: 70px;font-size:20px;position: relative;display:flex; ";
   dltButton.addEventListener("click", options);
   devContainer.appendChild(theInContainer);
   devContainer.appendChild(dltButton);

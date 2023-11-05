@@ -56,7 +56,7 @@ globalThemes = [light, dark, sunrise, seasunset, deepOcean, forestview, twilight
 
 themediv.addEventListener("click", () => { changeTheme(); });
 
-var themeIndex = 3;
+var themeIndex = 4;
 
 function showThemes() {
     let theContainer = document.createElement("DIV");

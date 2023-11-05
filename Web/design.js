@@ -228,10 +228,12 @@ function createDevice() {
     devFormContainer.style.visibility = "hidden";
     devForm.style.visibility = "hidden";
     let develmnt = eval(functString);
-    userDevices.push(functString);
+
+    addedDevices.push(functString);
     addObject(develmnt);
   }, 1000);
 }
+var addedDevices = Array();
 
 
 
@@ -257,15 +259,17 @@ function newposition() {
 
 //****************************************************AUTO SAVING******************************************* */
 
-// setInterval(() => {
-//   alert("saving...");
-//   let body = document.querySelector(".middlebar").innerHTML;
-//   //console.log(body);
-//   let  id ="<?php echo $userId; ?>" ;
-//   let  name = "<?php echo $userName;?>";
-//   let data = "/Web/updateUI.php?userId = "+id+"&userName = "+name+"&body="+body;
-//   xhttp.open("GET", data, true);
-//   xhttp.send();
+setInterval(() => {
+  alert("saving...");
+  console.log(addedDevices);
+  let body = addedDevices.join("<>");
+  alert(body);
+  //console.log(body);
+  // let  id ="<?php echo $userId; ?>" ;
+  // let  name = "<?php echo $userName;?>";
+  // let data = "/Web/updateUI.php?userId = "+id+"&userName = "+name+"&body="+body;
+  // xhttp.open("GET", data, true);
+  // xhttp.send();
 
-// }, 60000);
+}, 6000);
 

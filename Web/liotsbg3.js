@@ -6,14 +6,14 @@ var c = document.querySelector(".canvas"),
     ctx = c.getContext('2d'), tick,
     pointerX = 0, pointerY = 0;
 
-c.style.width = w + 10 + "px";
-c.style.height = h + 10 + "px";
+c.style.width = w + "px";
+c.style.height = h + "px";
 
 
 
 var hexfillColor = rootStyle.getPropertyValue('--base-color');
 var hexBorderColor = rootStyle.getPropertyValue('--base-color');
-var unzoneColor = toString('' + rootStyle.getPropertyValue('---color'));
+var unzoneColor = toString('' + rootStyle.getPropertyValue('--base-color'));
 var zoneColor = "#29F";
 var zoneDiameter = 400;
 
@@ -73,14 +73,14 @@ function creategon(x, y, d, bgcolor, color) {
     p.centerX = x;
     p.centerY = y;
     p.d = d;
-    p.hr = d * Math.sin(Math.PI / 3);
-    p.r = d * Math.cos(Math.PI / 3);
+    p.hr = p.d * Math.sin(Math.PI / 3);
+    p.r = p.d * Math.cos(Math.PI / 3);
     p.x = p.centerX - (p.d / 2);
-    p.y = p.centerY - p.hr / 2;
+    p.y = p.centerY - (p.hr);
     p.bgcolor = bgcolor;
     p.color = color;
     p.radius = 0.1;
-    p.alpha = .5;
+    p.alpha = 1;
     p.lineWidth = 6;
 
     p.draw = function () {
@@ -115,28 +115,49 @@ window.onmousemove = function (e) {
     pointerX = e.clientX;
     pointerY = e.clientY;
     // console.log(pointerX + " : " + pointerY);
+    if (backpage.clientHeight !== h) {
+        w = c.width = backpage.clientWidth;
+        h = c.height = backpage.clientHeight;
+        c.style.width = w + "px";
+        c.style.height = h + "px";
+    }
 
 
 }
 
+
+window.onresize = function (e) {
+    w = c.width = backpage.clientWidth;
+    h = c.height = backpage.clientHeight;
+
+}
+
 function preparePage(dist, pad, w, h) {
+    // console.log(pad);
     let hr = dist * Math.sin(Math.PI / 3);
     let r = dist * Math.cos(Math.PI / 3);
-    let hlineamount = Math.floor(h / hr);
-    let vlineamount = Math.floor(w / (dist + r) + 5);
-    let lastVer = 0;
-    let lastHor = -(hr + pad);
-    let voffset = false;
+    let hlineamount = Math.floor(h / (hr));
+    let vlineamount = Math.floor(w / (dist + r)) + 1;
+    //keeping the hlines odd
+    if (hlineamount % 2 === 0) {
+        hlineamount += 1;
+        // console.log(hlineamount);
+    }
+
+    let lastVer;
+    lastVer = -(r);
+    let lastHor = -(hr);
+    let voffset = true;
     let hoffset = false;
     let padPoints = Array();
 
     for (let ver = 0; ver < vlineamount; ver++) {
         if (voffset === true) {
-            lastHor = - (hr + pad);
+            lastHor = - (hr);
         }
 
         for (let hor = 0; hor < hlineamount; hor++) {
-            lastHor += (hr + pad);
+            lastHor += (hr);
             if ((hoffset === false && voffset === false) || (hoffset === true && voffset === true)) {
                 let point = [lastVer, lastHor];
                 padPoints.push(point);
@@ -173,15 +194,24 @@ function loop() {
 
     ctx.fillStyle = myNewGradient;
     ctx.fillRect(0, 0, w, h);
-    ctx.globalCompositeOperation = 'lighter';
+    // ctx.globalCompositeOperation = 'lighter';
+    ctx.globalCompositeOperation = 'source-over';
     //do your thing
     // console.log(pointerX + " : " + pointerY);
     let myZone;
     myZone = new zone(0, pointerX, pointerY, zoneColor, zoneDiameter).draw();
 
     ctx.globalCompositeOperation = 'source-over';
-    let distance = 100;
-    let paddings = 0;
+    let distance = w / 20;
+    if (distance < 90) {
+        distance = 90;
+    }
+    else if (distance > 120) {
+        distance = 120;
+    }
+    let padfactor = 100;
+    let paddings = padfactor * ((100 - distance) / (100 * distance));
+
     let pagepoints = preparePage(distance, paddings, w, h);
 
 
@@ -208,7 +238,9 @@ function loop() {
             insidePoints.push(p);
         }
         else {
-            myobj = creategon(x, y, 70, hexfillColor, hexBorderColor).draw();
+            hexfillColor = rootStyle.getPropertyValue('--base-color');
+            hexBorderColor = rootStyle.getPropertyValue('--base-color');
+            myobj = creategon(x, y, distance, hexfillColor, hexBorderColor).draw();
         }
 
 
@@ -220,7 +252,9 @@ function loop() {
         let factor = 1 - point.dist / zoneDiameter;
         // console.log(factor);
         ctx.globalCompositeOperation = 'source-over';
-        myobj = creategon(point.x, point.y, 30 * factor + 70, hexfillColor, hexBorderColor).draw();
+        hexfillColor = rootStyle.getPropertyValue('--base-color');
+        hexBorderColor = rootStyle.getPropertyValue('--base-color');
+        myobj = creategon(point.x, point.y, distance - (20 * factor), hexfillColor, hexBorderColor).draw();
 
 
 

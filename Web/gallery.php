@@ -81,6 +81,8 @@
         <div class="backpage">
             <canvas class="canvas"></canvas>
         </div>
+
+        
         <div class="container">
             <div class="tab" id="t0">
                 <div class="details">Lorem 0 ipsum dolor sit amet consectetur adipisicing elit. Quos esse...</div>

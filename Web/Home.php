@@ -12,27 +12,33 @@
     </head>
 
     <style>
+        body{
+            justify-content: center;
+            display: grid;
+        }
         .tab {
-            background-color: #1111;
+            background-color: #fff1;
             fill-opacity: 0.2;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             color: #f1f1f183;
-            left: 0;
-            top: 0px;
-            border: 2px solid black;
+            border: 2px solid var(--second-color);
             border-radius: 10px;
             position: relative;
             align-items: center;
-            justify-about-content: center;
-            width: calc(100% - 40px);
-            height: 50vh;
+            justify-self: center;
+            align-self: center;
+            width: 1000px;
+            height: 30vh;
             padding: 10px;
             margin: 10px;
+            display: grid;
+            box-sizing:content-box;
         }
 
         #firstTab {
             z-index: 0;
+            top: 0;
             height: 130px;
             display: block;
         }
@@ -40,11 +46,12 @@
         #secondTab {
             fill-opacity: 0.2;
             mix-blend-mode: add(5px);
-            height: fit-content;
+            top: 0;
+            height: calc(100% - 100px);
             z-index: 1;
             padding-bottom:30px;
             padding-top: 50px;
-            display: block;
+        
         }
 
         #thirdTab {
@@ -52,9 +59,10 @@
             height: fit-content;
             max-height: 50px;
             padding: 10px;
+            bottom:0;
             display: grid;
-            bottom:0px;
-            position: relative;
+            position: -webkit-sticky;
+
         }
 
         .image {
@@ -103,7 +111,7 @@
 
         }
 
-        .menu>a:hover {
+        a:hover, .about-content:hover {
             color: black;
             border: none;
             /* left: calc( 50% - 260px); */
@@ -181,7 +189,6 @@
             font-stretch: expanded;
             align-self: center;
             height: 100%;
-            top: 50%;
             line-height: 25px;
             font-size: 20px;
         }
