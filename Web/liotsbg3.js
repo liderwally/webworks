@@ -15,7 +15,7 @@ var hexfillColor = rootStyle.getPropertyValue('--base-color');
 var hexBorderColor = rootStyle.getPropertyValue('--base-color');
 var unzoneColor = toString('' + rootStyle.getPropertyValue('--base-color'));
 var zoneColor = "#29F";
-var zoneDiameter = 400;
+var zoneDiameter = 300;
 
 ctx.fillStyle = '';
 ctx.fillRect(0, 0, w, h);

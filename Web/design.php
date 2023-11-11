@@ -349,8 +349,8 @@ if ($_GET) {
       min-height: 150px;
       height: fit-content;
       background-color: var(--base-color);
-      display: block;
-
+      display: flex;
+      flex-wrap: wrap;
       visibility: hidden;
     }
 
@@ -431,14 +431,13 @@ if ($_GET) {
     </div>
     <div class="devFormContainer">
       <form class="devForm" id="theiForm">
-
       </form>
       <div id="configButton" onclick="createDevice()" class="devConfigInput">Create Device</div>
     </div>
   </body>
   <script>
     var userId = "<?php echo $userId; ?>";
-
+    var userName = "<?php echo $userName ; ?>";
   </script>
   <script src="/Web/hidbar.js"></script>
   <script src="/Web/themes.js"></script>

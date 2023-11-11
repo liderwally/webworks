@@ -53,7 +53,6 @@ twilight.setProp("#1d1a39","#451952","#662549","#ae445a","#f39f5a","#e8bcb9");
 
 globalThemes = [light, dark, sunrise, seasunset, deepOcean, forestview, twilight];
 
-
 themediv.addEventListener("click", () => { changeTheme(); });
 
 var themeIndex = 4;
@@ -76,16 +75,26 @@ function showThemes() {
         }
     };
     document.querySelectorAll(".themeTab").style = "width: fit-content;height:70px;background-color:var(--third-color);";
-    alert(document.querySelector("body"));
+    // alert(document.querySelector("body"));
     document.querySelector("body").appendChild(theContainer);
-
 }
 
+var themeIndex = 4;
 
 changeTheme()
 
 
 function changeTheme() {
+    themeIndex = parseInt(themeIndex);
+    if(typeof(themeIndex) !== "number"){
+        themeIndex = 0;
+        alert("themeIndex assignment failed");
+    }
+    if (themeIndex >= 7) {
+        themeIndex = 0;
+    }
+    themeIndex = parseInt(themeIndex);
+    console.log(themeIndex);
     console.log(globalThemes[themeIndex].getName()+":"+(globalThemes[themeIndex].getName() == "light"));
 
     if (globalThemes[themeIndex].getName() == "Day") {
@@ -101,9 +110,7 @@ function changeTheme() {
     }
     setTheme(globalThemes[themeIndex]);
     themeIndex++;
-    if (themeIndex == 7) {
-        themeIndex = 0;
-    }
+
 }
 
 

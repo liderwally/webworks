@@ -81,7 +81,7 @@ playbigdiv();
 
 
 if (screen.availWidth < 640) {
-    alert(screen.availWidth);
+    // alert(screen.availWidth);
     divspacing = 100;
     divwidth = 100;
     logdiv.style.width = divwidth + "px";

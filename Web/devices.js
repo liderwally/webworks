@@ -77,7 +77,7 @@ function downloadData(devId) {
       dataValue1 = '' + datas[1];
       dataValue2 = '' + datas[2];
       dataValue3 = '' + datas[3];
-      alert(datas);
+      // alert(datas);
 
     }
   }
@@ -309,6 +309,16 @@ class variable {
 
 }
 
+// DIAL SYSTEM - Device Ip Auto Locate system 
+
+class dialStream {
+  constructor(opId = '0000') {
+    this.opId = opId;
+  }
+  requestConnection() {
+
+  }
+}
 
 class canvas {
   constructor(id = 0, name = "", windows = 1) {
@@ -422,19 +432,19 @@ class interactive {
 
 /* 
 **************************************************************************************************************************************
-***********************************                      *****************************************************************************
-***********************************   DEVICES ADD ONS    *****************************************************************************
-***********************************                      *****************************************************************************
+***********************************                        *****************************************************************************
+***********************************   DEVICES REGISTRER    *****************************************************************************
+***********************************                        *****************************************************************************
 **************************************************************************************************************************************
 */
 
-function addObject(device) {
+function addObject(device, callerStr) {
 
   let devContainer = document.createElement("DIV");
   let dltButton = document.createElement("DIV");
   let theInContainer = device;
-
   devContainer.setAttribute("class", "devContainer");
+  devContainer.setAttribute("caller", callerStr);
   theInContainer.draggable = "true";
   dltButton.setAttribute("id", "deleteBtn");
   dltButton.innerHTML = optionsvg;
@@ -454,8 +464,8 @@ function options() {
   let obj = this;
   let optiontab = document.createElement("DIV");
   optiontab.setAttribute("class", "optionbars");
-  optiontab.style = "width:300px;height:300px;top:calc(50vh-50px);left:calc(50vw - 150px);margin:1px;visibility:visible;";
-  optiontab.style.transition = "2s";
+  optiontab.style = "z-index:300;width:300px;height:300px;position:absolute;top:calc(50vh-50px);left: calc(50vw - 300px);margin:1px;visibility:visible;";
+  optiontab.style.transition = "1s";
   // let thisObject = obj;
   let thisparent = obj.parentElement;
   // let thischild = obj.childElements;
@@ -484,9 +494,62 @@ function options() {
       break;
   }
 
-  return
+  return;
 }
 
+//****************************************************************************************************************************************/
+//*******************************                                          **********************************************************************/ 
+//*******************************   on start devices initiation function   **********************************************************************/
+//*******************************                                          **********************************************************************/
+//*****************************************************************************************************************************************/
+
+loadDevices();
+
+function loadDevices() {
+  // /Web/updateUI.php?command=get&userId=1114&userName=Wawako
+  let dataUrl = "/Web/updateUI.php?command=get&userId=" + userId + "&userName=" + userName;
+  console.log(dataUrl);
+  xhttp.open("GET", dataUrl, true);
+  xhttp.send();
+
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      let txt = this.responseText;
+      let deviceStr, detailsStr, userSettingsStr;
+      txtStr = txt.split("$$");
+      deviceStr = "" + txtStr[0];
+      detailsStr = "" + txtStr[2];
+      userSettingsStr = "" + txtStr[1];
+
+      let details = Array();
+      details = detailsStr.split("<>");
+      let devices = Array();
+      devices = deviceStr.split("<>");
+      let settings = Array();
+      settings = userSettingsStr.split("<>");
+
+      if (devices.length > 0) {
+        for (let j = 0; j < devices.length; j++) {
+          let functString = devices[j];
+          let elmnt = eval(functString);
+          if (elmnt) {
+            addObject(elmnt, devices[j]);
+          }
+
+        }
+      }
+
+      if (settings.length > 0) {
+        if (settings[0]) {
+          themeIndex = parseInt(settings[0]);
+        } else {
+          themeIndex = 0;
+        }
+        changeTheme();
+      }
+    }
+  }
+}
 
 //****************************************************************************************************************************************/
 //*******************************                                   **********************************************************************/ 
@@ -558,21 +621,32 @@ function map(from, fromLow, fromHigh, toLow, toHigh) {
 
 }
 
+// updating mouse location
+var mouseLocation = {
+  clientx: 0,
+  clienty: 0
+};
+
+window.onmousemove = function(e){
+  console.log("mouse moved");
+  mouseLocation.clientx = e.clientX;
+  mouseLocation.clienty = e.clienty;
+}
+
 function sliderHnewposition() {
   let outslider = this.parentElement;
   let thenode = outslider.nextSibling;
   let max = outslider.getAttributeNode("max").value;
   let min = outslider.getAttributeNode("min").value;
   let steps = outslider.getAttributeNode("step").value;
-  //alert(steps);
-  // this.style.top = "" + (lastdragY - 50) + "px";
   let bounds = outslider.getBoundingClientRect();
-  //console.log(max + ':' + min + ':' + steps);
-  //console.log(bounds.x);
+
+
   let minLeft = bounds.x;
   let maxLeft = bounds.width + bounds.x;
-  lastdragX = event.clientX;
-  lastdragY = event.clientY;
+
+  lastdragX = mouseLocation.clientx;
+  lastdragY = mouseLocation.clienty;
   //console.log('bounded:'+maxLeft+'>x>'+minLeft+'.x='+lastdragX);
 
 
@@ -605,8 +679,8 @@ function sliderHnewpositionchild() {
   let minLeft = bounds.x;
   let maxLeft = bounds.width + bounds.x;
   // this.style.top = "" + (lastdragY - 50) + "px";
-  lastdragX = event.clientX;
-  lastdragY = event.clientY;
+  lastdragX = mouseLocation.clientx;
+  lastdragY = mouseLocation.clienty;
   //console.log('bounded:'+maxLeft+'>x>'+minLeft+'.x='+lastdragX);
   let lastvaluen = map(lastdragX, minLeft, maxLeft, 0, bounds.width);
   //console.log("result : " + lastvaluen);
@@ -660,14 +734,14 @@ function changeSliderSwitch() {
   }
   if (approved) {
     let lastdataValue = theOutslider.getAttributeNode("data").value;
-    if(lastdataValue == 0) {
-      theSlider.style.left="calc("+theOutslider.style.width+" - "+theSlider.style.width+")";
+    if (lastdataValue == 0) {
+      theSlider.style.left = "calc(" + theOutslider.style.width + " - " + theSlider.style.width + ")";
       theOutslider.style.backgroundColor = "blue";
       theSlider.style.backgroundColor = " rgb(150,150, 150)";
       lastdataValue = 1;
     }
-    else if(lastdataValue == 1){
-      theSlider.style.left="0%";
+    else if (lastdataValue == 1) {
+      theSlider.style.left = "0%";
       theOutslider.style.backgroundColor = "rgb(150,150, 150)";
       theSlider.style.backgroundColor = "blue";
       lastdataValue = 0;
