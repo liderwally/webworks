@@ -66,7 +66,7 @@ h1 {
 <!-- MAIN (Center website) -->
 <div class="main">
 
-<h1>MYLOGO.COM</h1>
+<h1>LIDERSPACE.XYZ</h1>
 <hr>
 
 <h2>PORTFOLIO</h2>
@@ -76,28 +76,28 @@ h1 {
 <div class="row">
   <div class="column">
     <div class="content">
-      <img src="../w3images/mountains.jpg" alt="Mountains" style="width:100%">
+      <img src="./gallery/nature6.jpg" alt="Mountains" style="width:100%">
       <h3>My Work</h3>
       <p>Lorem ipsum dolor sit amet, tempor prodesset eos no. Temporibus necessitatibus sea ei, at tantas oporteat nam. Lorem ipsum dolor sit amet, tempor prodesset eos no.</p>
     </div>
   </div>
   <div class="column">
     <div class="content">
-    <img src="../w3images/lights.jpg" alt="Lights" style="width:100%">
+    <img src="./gallery/nature4.jpg" alt="Lights" style="width:100%">
       <h3>My Work</h3>
       <p>Lorem ipsum dolor sit amet, tempor prodesset eos no. Temporibus necessitatibus sea ei, at tantas oporteat nam. Lorem ipsum dolor sit amet, tempor prodesset eos no.</p>
     </div>
   </div>
   <div class="column">
     <div class="content">
-    <img src="../w3images/nature.jpg" alt="Nature" style="width:100%">
+    <img src="./gallery/nature3.jpg" alt="Nature" style="width:100%">
       <h3>My Work</h3>
       <p>Lorem ipsum dolor sit amet, tempor prodesset eos no. Temporibus necessitatibus sea ei, at tantas oporteat nam. Lorem ipsum dolor sit amet, tempor prodesset eos no.</p>
     </div>
   </div>
   <div class="column">
     <div class="content">
-    <img src="../w3images/mountains.jpg" alt="Mountains" style="width:100%">
+    <img src="./gallery/nature1.jpg" alt="Mountains" style="width:100%">
       <h3>My Work</h3>
       <p>Lorem ipsum dolor sit amet, tempor prodesset eos no. Temporibus necessitatibus sea ei, at tantas oporteat nam. Lorem ipsum dolor sit amet, tempor prodesset eos no.</p>
     </div>
@@ -106,7 +106,7 @@ h1 {
 </div>
 
 <div class="content">
-  <img src="../w3images/p3.jpg" alt="Bear" style="width:100%">
+  <img src="./gallery/nature0.jpg" alt="Bear" style="width:100%">
   <h3>Some Other Work</h3>
   <p>Lorem ipsum dolor sit amet, tempor prodesset eos no. Temporibus necessitatibus sea ei, at tantas oporteat nam. Lorem ipsum dolor sit amet, tempor prodesset eos no.</p>
   <p>Lorem ipsum dolor sit amet, tempor prodesset eos no. Temporibus necessitatibus sea ei, at tantas oporteat nam. Lorem ipsum dolor sit amet, tempor prodesset eos no.</p>

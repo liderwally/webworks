@@ -1,0 +1,33 @@
+<html>
+    <script src="aes.js"></script>
+    <h1>AES encrypt/decrypt online using CryptoJS</h1>
+
+  <br>text:<input id='text' type='text' value='0.1'/>
+
+  <br>password:<input id='pass' type='text' value='cool'/>
+  
+    <br><button onclick="encrypt()">encrypt</button>
+
+    <br>result:<br><span id='result'></span>
+
+    <br>decoded:<br><span id="decrypted"></span>
+
+    <br><button onclick="decrypt()">decrypt</button>
+
+    <script>
+        function encrypt(){
+            
+         var encrypted = CryptoJS.AES.encrypt(document.getElementById("text").value, document.getElementById("pass").value);   
+            document.getElementById("result").innerHTML = encrypted;
+            document.getElementById("decrypted").innerHTML = '';
+        }        
+        
+        function decrypt(){
+         var decrypted = CryptoJS.AES.decrypt(document.getElementById("result").innerHTML, document.getElementById("pass").value).toString(CryptoJS.enc.Utf8);
+            document.getElementById("decrypted").innerHTML = decrypted;
+            document.getElementById("result").innerHTML = '';
+        }        
+        
+        </script>
+
+</html>

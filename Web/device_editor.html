@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!-- saved from url=(0120)file:///D:/Learn/Doc/w3schools%20Offline%20Version%202020/www.w3schools.com/html/tryitfb35.html?filename=tryhtml_default -->
+<html lang="en-US"><!-- Mirrored from www.w3schools.com/html/tryit.asp?filename=tryhtml_default by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 27 Jan 2020 00:09:58 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Tryit Editor v3.6</title>
+<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="variables.css">
+<link rel="stylesheet" href="general.css">
+<link rel="stylesheet" href="liotsbg.css">
+<style ></style>
+
+<style>
+body{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  color: black;
+}
+
+.Con{
+  background-color: #99999935;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 2px solid black;
+  padding: 15px;
+  margin-top: 10px;
+  width: 98%;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+.top{
+  height: 150px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
+
+} 
+.down{
+  height: 10px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+
+
+}
+.mid{
+  height: 750px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  padding:0;
+
+}
+.editor{
+  background-color: #99999935;
+  width:49%;
+  padding: 0;
+  margin-right: 5px;
+
+
+}
+.Sep{
+  width: 5px;
+  background-color: antiquewhite;
+  margin-left: 5px;
+}
+.Sep:focus{
+  background-color: #28f90335;
+  padding:0;
+  width:2%;
+  border: 2px solid black;
+}
+.viewer{
+  background-color: #99999935;
+  width: 49%;
+  margin-left:5px;
+  padding: 0;
+}
+.viewer iframe{
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: azure;
+}
+
+#editor-tab{
+  color:black;
+  width: 100%;
+  height: 98%;
+  margin: 5px;
+  border-radius: 10px;
+  text-wrap: pretty;
+  text-overflow: ellipsis;
+  text-align-last: justify;
+
+}
+</style>
+
+</head>
+
+<body>
+  <div class="backpage">
+    <canvas class="canvas"></canvas>
+  </div>
+  
+  <div class="top w3-container Con">
+    <div class="w3-bar" style="padding: 5px;margin: 5px;color:rgba(96, 90, 90, 0.685)">
+    </div>
+    <div class="w3-bar w3-white ">
+      <button class="themediv w3-button "><img src="../pictures/icons/paint_bucket/paint_bucket-25.png"><span class="w3-display-hover"> theme</span></button>
+      <button class="orientation w3-button" onclick="toggeOrientation()"><img src="../pictures/icons/box/box-25.png"><span class="w3-display-hover"> orientation</span></button>
+      <button class="save w3-button"><img src="../pictures/icons/archive/archive-25.png"><span class="w3-display-hover"> save</span></button>
+      <button class="run w3-button"><img src="../pictures/icons/running/running-25.png"><span class="w3-display-hover"> run</span></button>
+      <input type="text" name="devicename" id="devicename" placeholder="device name" class="w3-input"></label>
+
+    </div>
+
+  </div>
+
+  <div class="mid w3-container Con">
+
+    <div class="editor w3-container tab">
+      <textarea autocomplete="off" id="editor-tab" wrap="logical" spellcheck="false"></textarea>
+    </div>
+
+    <div class="Sep bar">
+    </div>
+
+    <div class="viewer w3-container tab">
+      <iframe src="tempo.html" frameborder="0">
+
+      </iframe>
+    </div>
+
+  </div>
+
+  <div class="down w3-container Con">
+  
+  </div>
+
+
+</body>
+<script>
+var themediv = document.querySelector(".themediv");
+var midContainer= document.querySelector(".mid");
+var editor = document.querySelector(".editor");
+var sepbar = document.querySelector(".Sep");
+var viewer = document.querySelector(".viewer");
+var orientationValue = true;
+
+</script>
+<script src="hidbar.js"></script>
+<script src="themes.js"></script>
+<script src="liotsbg3.js"></script>
+
+<script>
+
+function toggeOrientation() {
+  orientationValue = !orientationValue;
+  console.log(orientationValue);
+  if(orientationValue){ // vertical
+    console.log( "vertical ");
+    midContainer.style="height: 750px; display: flex;flex-direction: column;padding: 0;flex-wrap: nowrap;align-content: stretch;justify-content: flex-start;align-items: stretch;";
+    editor.style.width = sepbar.style.width = viewer.style.width="99%";
+    editor.style.height = viewer.style.height="49%";sepbar.style.height = "1%";
+
+  }else{ // horizontal
+    console.log( "horizontal ");
+    midContainer.style="height: 750px; display: flex; flex-flow: column;padding: 0px;place-content: stretch flex-start;align-items: stretch;flex-direction: row;flex-wrap: nowrap;align-content: flex-start;justify-content: space-evenly;";
+    editor.style.width = viewer.style.width="49%";sepbar.style.width = "1%";
+    editor.style.height = sepbar.style.height = viewer.style.height="99%";
+
+  }
+  
+}
+
+
+
+</script>
+</html>

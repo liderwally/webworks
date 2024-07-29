@@ -3,7 +3,7 @@ $userId = '0';
 $userName = '0';
 $eofile = true;
 
-include "./aes.php";
+include "AES/aes.php";
 
 if ($_GET) {
   $userId = $_GET['ID'];
@@ -17,7 +17,7 @@ if ($_GET) {
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
     <link rel="stylesheet" href="/Web/variables.css" type="text/css">
     <link rel="stylesheet" href="/Web/general.css">
     <!-- <link rel="stylesheet" href="./design.css" type ="text/css"> -->
@@ -33,21 +33,25 @@ if ($_GET) {
       overflow-y: hidden;
       left: 5px;
       padding-left: 20px;
-      height: 10vh;
+      height: 20vh;
       z-index: 2;
       background-color: var(--first-color);
       color: var(--base-font-color);
-      /*#2288ff; c6d3a3;*/
       display: flex;
       border-radius: 10px;
       border: 1px solid var(--third-color);
       backdrop-filter: blur(8px) sepia(5px);
       -webkit-backdrop-filter: blur(8px) sepia(5px);
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: flex-start;
+      align-items: center;
     }
 
     .rightbar {
       border-radius: 10px;
-      top: calc(10% + 20px);
+      top: calc(20% + 20px);
       z-index: 2;
       margin-top: 0px;
       border: 1px solid var(--third-color);
@@ -64,7 +68,7 @@ if ($_GET) {
     }
 
     .leftbar {
-      top: 10%;
+      top: 20%;
       margin-top: 10px;
       z-index: 1;
       left: 5%;
@@ -88,7 +92,7 @@ if ($_GET) {
     .middlebar {
       width: calc(100% - 35px);
       left: 5px;
-      top: 10%;
+      top: 20%;
       height: calc(75% - 5px);
       /* bottom:0px; */
       color: var(--base-font-color);
@@ -114,7 +118,7 @@ if ($_GET) {
 
     .bottombar {
       width: calc(100% - 35px);
-      height: calc(10% - 15px);
+      height: 0;/*calc(10% - 15px);*/
       left: 5px;
       bottom: 0px;
       margin: 0px;
@@ -426,9 +430,9 @@ if ($_GET) {
 
     <div class="middlebar">
     </div>
-
+<!-- 
     <div class="bottombar">
-    </div>
+    </div> -->
     <div class="devFormContainer">
       <form class="devForm" id="theiForm">
       </form>
@@ -441,7 +445,7 @@ if ($_GET) {
   </script>
   <script src="/Web/hidbar.js"></script>
   <script src="/Web/themes.js"></script>
-  <script src="/Web/liotsbg3.js"></script>
+  <script src="/Web/liotsbg1.js"></script>
   <script src="/Web/devices.js"></script>
   <script src="/Web/design.js"></script>
 

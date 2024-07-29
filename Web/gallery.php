@@ -1,136 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing: border-box;}
+body {font-family: Verdana, sans-serif;}
+.mySlides {display: none;}
+img {vertical-align: middle;}
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/Web/variables.css" type="text/css">
-        <link rel="stylesheet" href="/Web/general.css">
-        <title>Document</title>
-    </head>
-    <style>
-        .container {
-            padding: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-            width: 94%;
-            top: 3%;
-            left: 3%;
-            height: 94%;
-            border: 2px solid black;
-            display: inline-block;
-            position: relative;
-            border-radius: 10px;
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
 
-        }
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
 
-        .tab {
-            left: 25%;
-            top: 20%;
-            border: 2px solid black;
-            width: 50%;
-            transition: 2s;
-            height: 60%;
-            position: absolute;
-            box-shadow: 0 0 5px 4px black;
-            border-radius: 15px;
-            background-size: cover;
-            background-repeat: no-repeat;
-            text-indent: 30%;
-        }
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
 
-        #t0 {
-            background-image: url("/pictures/hotel.jpg");
+/* The dots/bullets/indicators */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
 
-        }
+.active {
+  background-color: #717171;
+}
 
-        #t1 {
-            background-image: url("/pictures/nature4.jpg");
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
 
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
 
-        }
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
 
-        #t2 {
-            background-image: url("/pictures/nature3.jpg");
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+</style>
+</head>
+<body>
 
-        }
+<h2>Automatic Slideshow</h2>
+<p>Change image every 2 seconds:</p>
 
-        .details {
-            background-color: rgba(0, 0, 0, 0.6);
-            width: 30%;
-            color: white;
-            position: relative;
-            text-align: center;
-            min-height: 80%;
-            max-height: 90%;
-            top: 5%;
-            float: right;
-            right: 5%;
-            line-height: 100%;
-            padding: 20px;
-            border-radius: 8px;
+<div class="slideshow-container">
 
+<div class="mySlides fade">
+  <div class="numbertext">1 / 3</div>
+  <img src="/pictures/nature0.jpg" style="width:800px;height:300px;">
+  <div class="text">Caption Text</div>
+</div>
 
+<div class="mySlides fade">
+  <div class="numbertext">2 / 3</div>
+  <img src="/pictures/nature1.jpg" style="width:800px;height:300px;">
+  <div class="text">Caption Two</div>
+</div>
 
+<div class="mySlides fade">
+  <div class="numbertext">3 / 3</div>
+  <img src="/pictures/nature2.jpg" style="width:800px;height:300px;">
+  <div class="text">Caption Three</div>
+</div>
 
-        }
-    </style>
+</div>
+<br>
 
-    <body>
-        <div class="hidbar"></div>
-        <div class="backpage">
-            <canvas class="canvas"></canvas>
-        </div>
+<div style="text-align:center">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+</div>
 
-        
-        <div class="container">
-            <div class="tab" id="t0">
-                <div class="details">Lorem 0 ipsum dolor sit amet consectetur adipisicing elit. Quos esse...</div>
-            </div>
-            <div class="tab" id="t1">
-                <div class="details">Lorem 1 ipsum dolor sit amet consectetur adipisicing elit. Quos esse...</div>
-            </div>
-            <div class="tab" id="t2">
-                <div class="details">Lorem 2 ipsum dolor sit amet consectetur adipisicing elit. Quos esse...</div>
-            </div>
-        </div>
-    </body>
-    <script src="/Web/hidbar.js"></script>
-    <script src="/Web/themes.js"></script>
-    <script src="/Web/liotsbg3.js"></script>
-    <script>
-        var counter = 0;
-        setInterval(change, 5000);
+<script>
+var slideIndex = 0;
+showSlides();
 
-        function change() {
-            counter++;
-            alter();
-            if (change > 100) {
-                change = 0;
-            }
-        }
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+</script>
 
-        function alter() {
-            var vasu = 't' + counter % 3;
-            var vasu1 = 't' + (counter + 1) % 3;
-            var vasu2 = 't' + (counter + 2) % 3;
-            //console.log(vasu);console.log(vasu1);console.log(vasu2);
-            document.getElementById(vasu).style = "left:0%;width:100%;height:100%;top:0%;z-index:4;opacity:1;";
-            setTimeout(jump, 1);
+</body>
 
-
-        }
-        function jump() {
-            var vasu = 't' + counter % 3;
-            //alert(vasu);
-            var vasu1 = 't' + (counter + 1) % 3;
-            var vasu2 = 't' + (counter + 2) % 3;
-            document.getElementById(vasu1).style = "left:35%;top:20%;width:50%;height:60%;z-index:3;opacity:0.8;";
-            document.getElementById(vasu2).style = "left:0%;top:20%;width50%;height:60%;z-index:2;opacity:0.4;";
-
-        }
-        if (counter > 100) { counter = 0; }
-
-    </script>
-
-</html>
+<!-- Mirrored from www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow_auto by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 27 Jan 2020 02:32:21 GMT -->
+</html> 

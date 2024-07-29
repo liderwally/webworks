@@ -1,4 +1,3 @@
-
 var xhttp;
 var dataValue0;
 var dataValue1;
@@ -193,7 +192,6 @@ function createButton(name, details, id) {
   label.innerText = name;
   container.appendChild(label);
   container.appendChild(button);
-
   return container;
 }
 
@@ -269,7 +267,11 @@ class variable {
     theInput.setAttribute("type", "text");
     theInput.style = "color:black;width:100px;height:25px;float: right;";
     theInput.name = name;
-    theInput.addEventListener("change", () => { lastSelectedDevice = '' + (theInput.parentElement).id; formId = lastSelectedDevice; upload1(theInput); });
+    theInput.addEventListener("change", () => { 
+      lastSelectedDevice = '' + (theInput.parentElement).id; 
+      // formId = lastSelectedDevice; 
+      upload1(theInput); 
+    });
     return theInput;
   }
 
@@ -447,6 +449,10 @@ function addObject(device, callerStr) {
   devContainer.setAttribute("caller", callerStr);
   theInContainer.draggable = "true";
   dltButton.setAttribute("id", "deleteBtn");
+  theIncontainer.setAttribute("value0", 0);
+  theIncontainer.setAttribute("value1", 0);
+  theIncontainer.setAttribute("value2", 0);
+  theIncontainer.setAttribute("value3", 0);
   dltButton.innerHTML = optionsvg;
   dltButton.style = "float:right;transition:0.5s ease-in;left:calc(100% + 10px);background-color:var(--base-color);cursor:pointer;height:calc(100%);text-align:center;line-height:50px;color:var(--third-color);position:absolute;top:0;margin:1px;border: 1px solid gray;border-radius:5px;right:0px;z-index:100";
   dltButton.style.height = '50px';
@@ -456,6 +462,7 @@ function addObject(device, callerStr) {
   devContainer.appendChild(theInContainer);
   devContainer.appendChild(dltButton);
   middleibar.appendChild(devContainer);
+  globalDevices.push(callerStr);
 
 }
 
@@ -499,7 +506,7 @@ function options() {
 
 //****************************************************************************************************************************************/
 //*******************************                                          **********************************************************************/ 
-//*******************************   on start devices initiation function   **********************************************************************/
+//*******************************  device's initiation function(on start)  **********************************************************************/
 //*******************************                                          **********************************************************************/
 //*****************************************************************************************************************************************/
 
@@ -507,7 +514,9 @@ loadDevices();
 
 function loadDevices() {
   // /Web/updateUI.php?command=get&userId=1114&userName=Wawako
-  let dataUrl = "/Web/updateUI.php?command=get&userId=" + userId + "&userName=" + userName;
+  //alert(userId);
+  //alert(userName);
+  let dataUrl = "/Web/updateUI.php?command=get&userId=" + userId + "&userName=" + userName+ "";
   console.log(dataUrl);
   xhttp.open("GET", dataUrl, true);
   xhttp.send();
@@ -515,6 +524,7 @@ function loadDevices() {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       let txt = this.responseText;
+      console.log(txt);
       let deviceStr, detailsStr, userSettingsStr;
       txtStr = txt.split("$$");
       deviceStr = "" + txtStr[0];
@@ -531,6 +541,7 @@ function loadDevices() {
       if (devices.length > 0) {
         for (let j = 0; j < devices.length; j++) {
           let functString = devices[j];
+          console.log(functString);
           let elmnt = eval(functString);
           if (elmnt) {
             addObject(elmnt, devices[j]);
@@ -540,8 +551,9 @@ function loadDevices() {
       }
 
       if (settings.length > 0) {
-        if (settings[0]) {
-          themeIndex = parseInt(settings[0]);
+        if (typeof(settings[0]) === "number" && settings[0] > 8 && settings[0]< 0) {
+          
+          themeIndex = settings[0];
         } else {
           themeIndex = 0;
         }
@@ -712,6 +724,8 @@ function togglebtn() {
     this.innerText = "OFF";
   }
   this.parentElement.setAttribute("state", togcount);
+  this.parentElement.setAttribute("value0", togcount);
+
 }
 
 function changeSliderSwitch() {
@@ -747,6 +761,7 @@ function changeSliderSwitch() {
       lastdataValue = 0;
     }
     theOutslider.setAttribute("data", lastdataValue);
+
   }
 
 

@@ -35,11 +35,12 @@ class themetype {
     }
 }
 
+
+var dark = new themetype("Night", '0000');
+dark.setProp("#737373","#8c8c8c","#a6a6a6","#bfbfbf","#d9d9d9","#f2f2f2",);  //dark
 var light = new themetype("Day", '0000');
 // light.setProp("#e3e4f7","#ffe29b","#7f49ff","#4d503a","#9bffe2","#e29bff");   //light
 light.setProp("#e3d4ff","#c6aaff","#aa80ff","#8e55ff","#722aff","#bbfffa"); 
-var dark = new themetype("Night", '0000');
-dark.setProp("#737373","#8c8c8c","#a6a6a6","#bfbfbf","#d9d9d9","#f2f2f2",);  //dark
 var sunrise = new themetype("Sunrise", "0000");
 sunrise.setProp("#141b2b","#242d49","#384358","#ffa586","#b51a2b","#52172b");///red
 var seasunset = new themetype("Seasunset", "0000");
@@ -47,6 +48,7 @@ seasunset.setProp("#06142e","#1b3358","#473e66","#bd83b8","#f5d7db","#f1916d"); 
 var deepOcean = new themetype("Deepocean", "0000");
 deepOcean.setProp("#05161a","#072e33","#0c7075","#0f989c","#6da5c0","#294d61"); ///greenish
 var forestview = new themetype("Forestview", "0000");
+
 forestview.setProp("#190019","#2b124c","#522b5b","#854f6c","#dfb6b2","#fbe4d8"); //brown
 var twilight = new themetype("Twilight", "0000");
 twilight.setProp("#1d1a39","#451952","#662549","#ae445a","#f39f5a","#e8bcb9");
@@ -55,7 +57,7 @@ globalThemes = [light, dark, sunrise, seasunset, deepOcean, forestview, twilight
 
 themediv.addEventListener("click", () => { changeTheme(); });
 
-var themeIndex = 4;
+var themeIndex = 0;
 
 function showThemes() {
     let theContainer = document.createElement("DIV");
@@ -85,17 +87,17 @@ changeTheme()
 
 
 function changeTheme() {
-    themeIndex = parseInt(themeIndex);
+    // themeIndex = parseInt(themeIndex);
     if(typeof(themeIndex) !== "number"){
-        themeIndex = 0;
+        themeIndex = 1;
         alert("themeIndex assignment failed");
     }
     if (themeIndex >= 7) {
-        themeIndex = 0;
+        themeIndex = 1;
     }
-    themeIndex = parseInt(themeIndex);
+    // themeIndex = parseInt(themeIndex);
     console.log(themeIndex);
-    console.log(globalThemes[themeIndex].getName()+":"+(globalThemes[themeIndex].getName() == "light"));
+    console.log(globalThemes[themeIndex].getName() + ":" + (globalThemes[themeIndex].getName() == "light"));
 
     if (globalThemes[themeIndex].getName() == "Day") {
         themediv.style.backgroundImage = 'url("/pictures/theme white.png")';

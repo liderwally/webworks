@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: rgba(0, 0, 0, 0);
+    }
+    .loadContainer{
+        width: 100px;
+        height: 100px;
+        background-color: rgba(0, 0, 0, 0);
+        display: flex;
+        
+
+    }
+
+    .layer{
+        width: 50px;
+        height: 50px;
+        top:0%;
+        left: 0%;
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 50%;
+        position: absolute;
+    }
+    .layer#layer1{
+        animation: move 6s 0s infinite ease-in-out;
+    }
+    .layer#layer2{
+        animation: move 6s 0.2s infinite ease-in-out;
+    }
+    .layer#layer3{
+        animation: move 6s 0.5s infinite ease-in-out;
+    }
+    .layer#layer4{
+        animation: move 6s 0.9s infinite ease-in-out;
+    }
+    .layer#layer5{
+        animation: move 6s 1.4s infinite ease-in-out;
+    }
+
+    @keyframes move{
+        0%{z-index: 10;background-color: rgba(255, 0, 0, 0);top:5px;left: 35px;transform: rotateY(0deg);}
+        25%{z-index: 100;background-color:  rgba(0, 255, 0, 1);top:5px;left:70px;transform: rotateY(90deg);}
+        50%{z-index: 105;background-color: rgba(255, 255, 255, 0);top:5px;left:35px;transform: rotateY(180deg);}
+        75%{z-index: 100;background-color:  rgba(0, 0, 255, 1);top:5px;left:0px;transform: rotateY(270deg);}
+        100%{z-index: 0;background-color: rgba(255, 0, 0, 0);top:5px;left: 35px;transform: rotateY(361deg);
+
+        }
+
+    }
+</style>
+<body>
+    <div class="loadContainer">
+        <div class="layer" id="layer1"></div>
+        <div class="layer" id="layer2"></div>
+        <div class="layer" id="layer3"></div>
+        <div class="layer" id="layer4"></div>
+        <div class="layer" id="layer5"></div>
+        
+    </div>
+</body>
+<script>
+
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!-- /made by liderdewally11@gmail.com
+     //find me at github:github.liderwally
+-->

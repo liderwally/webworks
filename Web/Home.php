@@ -13,8 +13,13 @@
 
     <style>
         body{
-            justify-content: center;
-            display: grid;
+            justify-content: space-around;
+            display: flex;
+            height: 70vh;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-content: center;
+            align-items: center;
         }
         .tab {
             background-color: #fff1;
@@ -39,18 +44,31 @@
         #firstTab {
             z-index: 0;
             top: 0;
-            height: 130px;
-            display: block;
+            padding: 0%;
+            padding-bottom: 10px;
+            height: 100px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: space-evenly;
+            align-items: center;
         }
 
         #secondTab {
             fill-opacity: 0.2;
             mix-blend-mode: add(5px);
             top: 0;
-            height: calc(100% - 100px);
+            height: fit-content;
             z-index: 1;
-            padding-bottom:30px;
+            padding-bottom: 30px;
             padding-top: 50px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: space-evenly;
+            align-items: center;
         
         }
 
@@ -116,7 +134,8 @@
             border: none;
             /* left: calc( 50% - 260px); */
             transform: scale(1.1);
-            box-shadow: 2px 2px 3px black text-shadow:0px 2px 3px black;
+            box-shadow: 2px 2px 3px black ;
+            text-shadow:0px 2px 3px black;
             /* border:#3b8bac groove 3px; */
         }
 
@@ -160,19 +179,20 @@
             float: left;
             justify-items: center;
             justify-content: center;
-            display: grid;
+            display: flex;
             border-radius: 10px;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: stretch;
+            align-items: center;
         }
 
         .details {
             position: relative;
             height: 20px;
             width: 500px;
-            /* left: calc( 50% - 250px); */
-            justify-about-content: center;
             justify-self: center;
             align-self: center;
-            background: #004D730;
             color: var(--third-color);
             transition: 0.5s;
 
@@ -267,7 +287,7 @@
         </div>
         <div class="tab" id="secondTab">
             <h5>LIDER IoT SPACE</h5>
-            <hr>
+            <br>
             <div class="menu">
                 <a href="login.php" onmouseover="changemsg('Register or Login to enjoy the innovative space.')"
                     onmouseleave="disappearmsg()">Login</a>

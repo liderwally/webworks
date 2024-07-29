@@ -2,6 +2,8 @@
 var lastSelectedDevice;
 var userDevices = Array();
 var lastMethodCall;
+var lastCreatedDevice;
+var globalDevices = Array();
 var togcount = 0;
 var devFormContainer = document.querySelector('.devFormContainer');
 var devForm = document.querySelector(".devForm");
@@ -17,6 +19,7 @@ var thehomeLoader = document.querySelector("#homeLoader");
 menuDisablebutton.addEventListener("click", menuDisable);
 menuEnablebutton.addEventListener("click", menuEnable);
 setTimeout(() => { menuDisable(); }, 1500);
+
 
 function menuEnable() {
   rightibar.style = 'width:10%;right:10px;';
@@ -149,6 +152,8 @@ function showDevform() {
   if (this.getAttributeNode("method").value) {
     alert(this.getAttributeNode("method").value);
     lastMethodCall = this.getAttributeNode("method").value;
+    lastCreatedDevice = this.getAttributeNode("data").value;
+
   }
 
   devFormContainer.style.visibility = "visible";
@@ -158,7 +163,7 @@ function showDevform() {
 
 }
 
-
+console.log(publicDevices);
 for (let j = 0; j < publicDevices.length; j++) {
   //alert(j);
   let devise = publicDevices[j];
@@ -171,6 +176,7 @@ for (let j = 0; j < publicDevices.length; j++) {
   if (specificId == userId || specificId == '0000') {
     let device = document.createElement("DIV");
     device.setAttribute("method", method);
+    device.setAttribute("data", devise);
     device.setAttribute("specificId", devise[2]);
     //booleans
     device.setAttribute("name", devise[3]);
@@ -230,7 +236,8 @@ function createDevice() {
     let develmnt = eval(functString);
 
     addedDevices.push(functString);
-    addObject(develmnt);
+
+    addObject(develmnt,functString);
   }, 1000);
 }
 var addedDevices = Array();
@@ -260,16 +267,29 @@ function newposition() {
 //****************************************************AUTO SAVING******************************************* */
 
 setInterval(() => {
-  alert("saving...");
-  console.log(addedDevices);
-  let body = addedDevices.join("<>");
-  alert(body);
-  //console.log(body);
-  // let  id ="<?php echo $userId; ?>" ;
-  // let  name = "<?php echo $userName;?>";
-  // let data = "/Web/updateUI.php?userId = "+id+"&userName = "+name+"&body="+body;
-  // xhttp.open("GET", data, true);
-  // xhttp.send();
+  console.log("saving...");
+  console.log(globalDevices);
+  let body = globalDevices.join("<>");
+  // alert(body);
 
-}, 6000);
+  // txtStr = txt.split("$$");
+  // deviceStr = "" + txtStr[0];
+  // detailsStr = "" + txtStr[2];
+  // userSettingsStr = "" + txtStr[1];
 
+
+  console.log(body);
+  let data = "/Web/updateUI.php?command=set&userId= "+userId+"&userName= "+userName+"&data="+body;
+  xhttp.open("GET", data, true);
+  xhttp.send();
+
+}, 1000);
+
+
+
+
+setInterval(() => {
+  console.log(globalDevices);
+
+}, 2000);
+  

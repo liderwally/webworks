@@ -4,32 +4,26 @@ $thePassCode = $_POST["passCode"];
 $theName = '';
 $theId = '';
 $theTerminator = 0;
-
+include "connection.php";
 $sqla = 'select * from newtable where Email="' . $theEmail . '"';
-$database = 'myNewDb';
-$conn = mysqli_connect('localhost:3306', 'root', 'mimisijui04390', $database);
-if (!$conn) {
-    $conn = mysqli_connect("Localhost", "id19191420_newdb11", "sL3s03!x4{(Z6K7t", "id19191420_mynewdb");
-    if (!$conn) {
-        die("couldn't connect" . mysqli_error($dbConnect));
-    }
-}
-if (mysqli_query($conn, $sqla)) {
-    $colora = mysqli_query($conn, $sqla);
-    while ($thecolora = mysqli_fetch_array($colora)) {
-        if ($thecolora['password'] == $thePassCode) {
-            $theTerminator = 1;
-            $theId = $thecolora['ID'];
-            $theName = $thecolora['Nam'];
+if ($conn) {
+    if (mysqli_query($conn, $sqla)) {
+        $colora = mysqli_query($conn, $sqla);
+        while ($thecolora = mysqli_fetch_array($colora)) {
+            if ($thecolora['password'] == $thePassCode) {
+                $theTerminator = 1;
+                $theId = $thecolora['ID'];
+                $theName = $thecolora['Nam'];
 
-        } else {
-            $theName = "";
-            $theId = 0000;
-            $theTerminator = 0;
+            } else {
+                $theName = "";
+                $theId = 0000;
+                $theTerminator = 0;
+            }
         }
+    } else {
+        die("<br>couldnt connect" . mysqli_error($conn));
     }
-} else {
-    die("<br>couldnt connect" . mysqli_error($conn));
 }
 ?>
 <!DOCTYPE html>
